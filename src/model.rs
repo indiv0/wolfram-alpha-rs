@@ -7,13 +7,13 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#![allow(missing_docs)]
+#![cfg_attr(feature = "clippy", allow(cyclomatic_complexity))]
+
 //! Struct and enum definitions of values in the Wolfram|Alpha model.
 //!
 //! For more information, see [Wolfram|Alpha's API
 //! documentation](http://products.wolframalpha.com/api/documentation.html).
-
-#![allow(missing_docs)]
-#![cfg_attr(feature = "clippy", allow(cyclomatic_complexity))]
 
 use url::Url;
 
