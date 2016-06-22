@@ -1,0 +1,59 @@
+sudo: false
+language: rust
+# necessary for `travis-cargo coveralls --no-sudo`
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - binutils-dev # optional: only required for the --verify flag of coveralls
+# run builds for all the trains (and more)
+rust:
+  - nightly
+  - beta
+  # check that it compiles on the latest stable compiler
+  - stable
+os:
+  - linux
+  - osx
+cache:
+  directories:
+    - $HOME/.cargo
+before_script:
+  # load travis-cargo
+  - |
+      pip install 'travis-cargo<0.2' --user &&
+      export PATH=$HOME/.local/bin/:$PATH &&
+      export PATH=$HOME/Library/Python/2.7/bin:$PATH
+# the main build
+script:
+  - |
+      travis-cargo build &&
+      travis-cargo test &&
+      travis-cargo bench &&
+      travis-cargo --only stable doc
+after_success:
+  # upload the documentation from the build with stable (automatically only
+  # actually runs from the master branch, not individual PRs)
+  - travis-cargo --only stable doc-upload
+  # measure code coverage and upload to coveralls.io (the verify argument
+  # mitigates kcov crashes due to malformed debuginfo, at the cost of some
+  # speed. <https://github.com/huonw/travis-cargo/issues/12>)
+  - travis-cargo coveralls --no-sudo --verify
+env:
+  global:
+    - RUST_BACKTRACE=1
+    # override the default '--features unstable' used for the nightly branch
+    - TRAVIS_CARGO_NIGHTLY_FEATURE="nightly-testing"
+    # encrypted Github token for doc upload
+    - secure: "hUA29C2CUdDrW7KvHNBQpdpeGMcVZahm2rU4PKK0IQUpbblJPWwqMDFjNsYZj1xQe3ybselWxVj08/c9bMPCaV2NdYj4Sa4vPleaY4jRSCdMOJpDmdAK61S1Q3ZejVt/XCi6q1l+ML6f7vNJgMV4hjwDwxQRbHfmlEzVcpNgktqGT21u7kl6JgvCc8/behQgkUok7zMhe9xptHjWkOViiW4UUamFcMVXFf/mO+IPVDKXIOlXUhMrF/fPlPmgd7S2ONqPyrncVZsrKt6R6LSj4birKSOQm5saVK29kztM37/YoLZpsykJ2CaQohwuH4M7V2/5Ord5UEfGD/AVHaRejPL+baYWsRUk3rfJG6uahH7htCSAi1IiulD8EJO1gdPIy6kOF4P0uq8NSZWrSsyP58VeNrStUXqRxF8tQE12zL+ZUI7mt2B3uiFfRwBKubM0NmNFnK9YYoKMsuuxOXsqPbwNdk+m6+E+GmqHpKAoEY6Coth1AfQQ9/mj4TaZ39nbw8kpKroTTyzT8OwB/TL+OnqsqSi2x/2AAwRqicY6M4HvsMfWwQqyP86xWFGOckF6RGQzn3MxQw9YqByrytW/nTs/oqK4Oe1cf/fENFhHtVOPiyCqHLFrahMSiE4PGCNW0cu7YEHm4j8UZB0Nq2AVeozGBUedwURNH1rpiu6MW0Y="
+branches:
+  only:
+    - master
+    - auto
+notifications:
+  email: false
+matrix:
+  allow_failures:
+    - rust: nightly
