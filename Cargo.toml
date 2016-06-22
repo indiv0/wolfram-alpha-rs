@@ -4,7 +4,6 @@ version = "0.1.0"
 authors = ["Nikita Pekin <contact@nikitapek.in>"]
 
 [dependencies]
-lazy_static = "0.2.1"
 log = "0.3.6"
 serde = "0.7.4"
 serde_macros = "0.7.0"
