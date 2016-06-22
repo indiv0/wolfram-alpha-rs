@@ -2,6 +2,28 @@
 name = "wolfram_alpha"
 version = "0.1.0"
 authors = ["Nikita Pekin <contact@nikitapek.in>"]
+description = "A library providing Rust bindings for the Wolfram|Alpha API"
+repository = "https://github.com/indiv0/wolfram-alpha-rs"
+documentation = "https://indiv0.github.io/wolfram-alpha-rs/wolfram_alpha/"
+readme = "README.md"
+keywords = [
+    "wolfram",
+    "alpha",
+    "wolframalpha",
+    "API",
+    "hyper",
+    "web",
+    "library",
+]
+license = "MIT/Apache-2.0"
+include = [
+    "CHANGELOG.md",
+    "Cargo.toml",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "README.md",
+    "src/**/*.rs",
+]
 
 [dependencies]
 log = "0.3.6"
