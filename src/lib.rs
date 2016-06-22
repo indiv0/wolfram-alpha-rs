@@ -11,9 +11,8 @@
 #![deny(non_camel_case_types)]
 #![deny(warnings)]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
-#![cfg_attr(feature = "nightly", feature(plugin))]
-#![feature(custom_derive, plugin)]
-#![plugin(serde_macros)]
+#![cfg_attr(feature = "nightly", feature(custom_derive, plugin))]
+#![cfg_attr(feature = "nightly", plugin(serde_macros))]
 
 //! A library providing Rust bindings for the Wolfram|Alpha web API.
 //!
