@@ -9,14 +9,13 @@ readme = "README.md"
 keywords = [
     "wolfram",
     "alpha",
-    "wolframalpha",
     "API",
-    "hyper",
     "web",
     "library",
 ]
 license = "MIT/Apache-2.0"
 include = [
+    "build.rs",
     "CHANGELOG.md",
     "Cargo.toml",
     "LICENSE-MIT",
