@@ -1,0 +1,31 @@
+[package]
+name = "wolfram_alpha"
+version = "0.1.0"
+authors = ["Nikita Pekin <contact@nikitapek.in>"]
+
+[dependencies]
+lazy_static = "0.2.1"
+log = "0.3.6"
+serde = "0.7.4"
+serde_macros = "0.7.0"
+serde_xml = "0.7.0"
+
+[dependencies.clippy]
+optional = true
+version = "0.0"
+
+[dependencies.hyper]
+optional = true
+version = "0.9.5"
+
+[dependencies.url]
+features = ["serde"]
+version = "1.1.1"
+
+[features]
+default = ["hyper"]
+nightly = []
+nightly-testing = [
+    "clippy",
+    "nightly",
+]
