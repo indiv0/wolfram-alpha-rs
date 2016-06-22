@@ -36,6 +36,41 @@ mod tests {
 
         let s = QUERY_RESULT_2_STR.to_owned();
         from_str::<QueryResult>(&s).unwrap();
+
+        /*
+        let s = QUERY_RESULT_3_STR.to_owned();
+        let v = from_str::<QueryResult>(&s).unwrap();
+
+        let query_result = QueryResult {
+            success: false,
+            error: true,
+            numpods: 0,
+            //version: "".to_owned(),
+            datatypes: "".to_owned(),
+            timing: 0.066,
+            timedout: "".to_owned(),
+            //timedoutpods: "",
+            //parsetiming: 0.0,
+            //parsetimedout: false,
+            //recalculate: "".to_owned(),
+            //id: "".to_owned(),
+            //server: 0,
+            //related: "".to_owned(),
+
+            pod: Vec::new(),
+            assumptions: None,
+            sources: None,
+            tips: None,
+            didyoumeans: None,
+            languagemsg: None,
+            futuretopic: None,
+            relatedexamples: None,
+            examplepage: None,
+            generalization: None,
+            warnings: None,
+        };
+        assert_eq!(v, query_result);
+        */
     }
 
     #[test]
@@ -553,4 +588,17 @@ total payments | C$325325 | </plaintext>
    </info>
   </infos>
     "#;
+
+    /*
+    const QUERY_RESULT_3_STR: &'static str = r#"
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false' error='true' numpods='0'
+     datatypes='' timedout='' timing='0.066' parsetiming='0'>
+  <error>
+    <code>2</code>
+    <msg>Appid missing</msg>
+  </error>
+</queryresult>
+    "#;
+    */
 }
