@@ -9,7 +9,7 @@
         <td colspan="2">
             <a href="https://indiv0.github.io/wolfram-alpha-rs/wolfram_alpha" title="API Docs"><img src="https://img.shields.io/badge/API-docs-blue.svg" alt="api-docs-badge"></img></a>
             <a href="https://crates.io/crates/wolfram_alpha" title="Crates.io"><img src="https://img.shields.io/crates/v/wolfram_alpha.svg" alt="crates-io"></img></a>
-            <a href="#License" title="License: MIT/Apache-2.0"><img src="https://img.shields.io/crates/l/wolfram_alpha.svg" alt="license-badge"></img></a>
+            <a href="#license" title="License: MIT/Apache-2.0"><img src="https://img.shields.io/crates/l/wolfram_alpha.svg" alt="license-badge"></img></a>
             <a href="https://coveralls.io/github/indiv0/wolfram-alpha-rs?branch=master" title="Coverage Status"><img src="https://coveralls.io/repos/github/indiv0/wolfram-alpha-rs/badge.svg?branch=master" alt="coveralls-badge"></img></a>
         </td>
     </tr>
