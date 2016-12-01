@@ -29,6 +29,13 @@ before_script:
       else
         export PATH=$HOME/Library/Python/2.7/bin:$PATH
       fi
+  - |
+      if [[ "$TRAVIS_OS_NAME" == "osx"  ]]; then
+        brew install openssl && \
+        export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include && \
+        export OPENSSL_LIB_DIR=`brew --prefix openssl`/lib && \
+        echo "Installed OpenSSL for OS X."
+      fi
 # the main build
 script:
   - |
@@ -47,11 +54,16 @@ script:
       else
         travis-cargo bench
       fi &&
-      travis-cargo --only stable doc
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        travis-cargo --only stable doc
+      fi
 after_success:
   # upload the documentation from the build with stable (automatically only
-  # actually runs from the master branch, not individual PRs)
-  - travis-cargo --only stable doc-upload
+  # actually runs from the master branch, not individual PRs), not on OS X.
+  - |
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        travis-cargo --only stable doc-upload
+      fi
   # measure code coverage and upload to coveralls.io (the verify argument
   # mitigates kcov crashes due to malformed debuginfo, at the cost of some
   # speed. <https://github.com/huonw/travis-cargo/issues/12>)
