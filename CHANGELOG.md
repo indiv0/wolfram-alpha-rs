@@ -1,3 +1,12 @@
+<a name="v0.1.1"></a>
+## v0.1.1 (2016-12-01)
+
+#### Chore
+
+*   update serde to latest version
+
+
+
 <a name="v0.1.0"></a>
 ## v0.1.0 (2016-06-22)
 
