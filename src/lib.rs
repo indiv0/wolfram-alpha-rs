@@ -10,9 +10,9 @@
 #![deny(missing_docs)]
 #![deny(non_camel_case_types)]
 #![deny(warnings)]
+#![cfg_attr(feature = "clippy", feature(plugin))]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
-#![cfg_attr(feature = "nightly", feature(custom_derive, plugin))]
-#![cfg_attr(feature = "nightly", plugin(serde_macros))]
+#![cfg_attr(feature = "nightly", feature(custom_derive, proc_macro))]
 
 //! A library providing Rust bindings for the Wolfram|Alpha web API.
 //!
@@ -34,6 +34,9 @@ extern crate hyper;
 #[macro_use]
 extern crate log;
 extern crate serde;
+#[cfg(feature = "nightly")]
+#[macro_use]
+extern crate serde_derive;
 extern crate serde_xml;
 extern crate url;
 

@@ -27,12 +27,12 @@ build = "build.rs"
 
 [build-dependencies.serde_codegen]
 optional = true
-version = "0.7.10"
+version = "0.8.19"
 
 [dependencies]
 log = "0.3.6"
-serde = "0.7.10"
-serde_xml = "0.7.0"
+serde = "0.8.19"
+serde_xml = "0.9.1"
 
 [dependencies.clippy]
 optional = true
@@ -42,9 +42,9 @@ version = "0.0"
 optional = true
 version = "0.9.5"
 
-[dependencies.serde_macros]
+[dependencies.serde_derive]
 optional = true
-version = "0.7.10"
+version = "0.8.19"
 
 [dependencies.url]
 features = ["serde"]
@@ -52,6 +52,6 @@ version = "1.1.1"
 
 [features]
 default = ["hyper", "with-syntex"]
-nightly = ["serde_macros"]
+nightly = ["serde_derive"]
 nightly-testing = ["clippy", "nightly"]
 with-syntex = ["serde_codegen"]
