@@ -27,7 +27,7 @@ include!(concat!(env!("OUT_DIR"), "/model.rs"));
 mod tests {
     use serde_xml::from_str;
 
-    use super::{Img, Infos, Pod, QueryResult, Subpod};
+    use super::{Img, Infos, Plaintext, Pod, QueryResult, Subpod};
 
     #[test]
     fn test_query_result_deserializer() {
@@ -89,6 +89,12 @@ mod tests {
     fn test_img_deserializer() {
         let s = IMG_STR.to_owned();
         from_str::<Img>(&s).unwrap();
+    }
+
+    #[test]
+    fn test_plaintext_deserializer() {
+        from_str::<Plaintext>(&"<plaintext>pi</plaintext>".to_owned()).unwrap();
+        from_str::<Option<Plaintext>>(&"<plaintext/>".to_owned()).unwrap();
     }
 
     #[test]

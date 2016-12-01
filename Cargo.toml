@@ -32,7 +32,7 @@ version = "0.8.19"
 [dependencies]
 log = "0.3.6"
 serde = "0.8.19"
-serde_xml = "0.9.1"
+serde_xml = "0.8.1"
 
 [dependencies.clippy]
 optional = true
