@@ -1,0 +1,11 @@
+<statelist count='9' value='Current week'>
+  <state name='Current week' input='WeatherCharts:WeatherData__Current week' />
+  <state name='Current day' input='WeatherCharts:WeatherData__Current day' />
+  <state name='Next week' input='WeatherCharts:WeatherData__Next week' />
+  <state name='Past week' input='WeatherCharts:WeatherData__Past week' />
+  <state name='Past month' input='WeatherCharts:WeatherData__Past month' />
+  <state name='Past year' input='WeatherCharts:WeatherData__Past year' />
+  <state name='Past 5 years' input='WeatherCharts:WeatherData__Past 5 years' />
+  <state name='Past 10 years' input='WeatherCharts:WeatherData__Past 10 years' />
+  <state name='All' input='WeatherCharts:WeatherData__All' />
+</statelist>

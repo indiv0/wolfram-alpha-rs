@@ -1,0 +1,36 @@
+<states count='3'>
+ <statelist count='8'
+     value='Last year'
+     delimiters=''>
+  <state name='Last year'
+      input='PriceHistory__Last year' />
+  <state name='Last week'
+      input='PriceHistory__Last week' />
+  <state name='Last month'
+    input='PriceHistory__Last month' />
+  <state name='Last 2 years'
+      input='PriceHistory__Last 2 years' />
+  <state name='Last 5 years'
+      input='PriceHistory__Last 5 years' />
+  <state name='Last 10 years'
+      input='PriceHistory__Last 10 years' />
+  <state name='Last 30 years'
+      input='PriceHistory__Last 30 years' />
+  <state name='All data'
+      input='PriceHistory__All data' />
+ </statelist>
+ <statelist count='4'
+     value='Basic chart'
+     delimiters=''>
+  <state name='Basic chart'
+      input='PriceHistory__Basic chart' />
+  <state name='With MA'
+      input='PriceHistory__With MA' />
+  <state name='Candlestick chart'
+      input='PriceHistory__Candlestick chart' />
+  <state name='With trend'
+      input='PriceHistory__With trend' />
+ </statelist>
+ <state name='Log scale'
+     input='PriceHistory__Log scale' />
+</states>
