@@ -57,6 +57,8 @@ mod tests {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_1.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_2.xml")).unwrap();
         //from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
     }
 
     #[test]

@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    numpods='6'
+    datatypes='Airport,City,Country'
+    timedout='Data,Character'
+    timedoutpods=''
+    timing='5.68'
+    parsetiming='0.124'
+    parsetimedout='false'
+    recalculate='http://www5a.wolframalpha.com/api/v2/recalc.jsp?id=MSPa45901gh2i6ee250he1ah000064dghfa1id7038aa2761554860090389433'
+    id='MSPa45911gh2i6ee250he1ah0000213d2c0e978162f5'
+    host='http://www5a.wolframalpha.com'
+    server='45'
+    related='http://www5a.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa45921gh2i6ee250he1ah00000ed5ic86h5922g7d2761554860090389433'
+    version='2.6'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45931gh2i6ee250he1ah00003fhhi870f5aab02e?MSPStoreType=image/gif&amp;s=45'
+       alt='Skrydstrup Air Base  (airport)'
+       title='Skrydstrup Air Base  (airport)'
+       width='192'
+       height='18' />
+   <plaintext>Skrydstrup Air Base  (airport)</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Location city'
+     scanner='Data'
+     id='CityLocation:AirportData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45941gh2i6ee250he1ah0000608d77i468014e30?MSPStoreType=image/gif&amp;s=45'
+       alt='Vojens, Sonderjylland, Denmark'
+       title='Vojens, Sonderjylland, Denmark'
+       width='210'
+       height='18' />
+   <plaintext>Vojens, Sonderjylland, Denmark</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Location'
+     scanner='Data'
+     id='Location:AirportData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45951gh2i6ee250he1ah0000548484a4e8d9d985?MSPStoreType=image/gif&amp;s=45'
+       alt=''
+       title=''
+       width='328'
+       height='258' />
+   <plaintext></plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='Show coordinates'
+       input='Location:AirportData__Show coordinates' />
+  </states>
+  <infos count='1'>
+   <info>
+    <link url='http://maps.google.com?ie=UTF8&amp;z=12&amp;t=k&amp;ll=55.2256%2C9.26393&amp;q=55.2256%20N%2C%209.26393%20E'
+        text='Satellite image' />
+   </info>
+  </infos>
+ </pod>
+ <pod title='Local map'
+     scanner='Data'
+     id='WolframMap:AirportData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45961gh2i6ee250he1ah00001a2076hh5hac36a9?MSPStoreType=image/gif&amp;s=45'
+       alt=''
+       title=''
+       width='550'
+       height='278' />
+   <plaintext></plaintext>
+  </subpod>
+  <states count='2'>
+   <statelist count='13'
+       value='20 kilometers across'
+       delimiters=''>
+    <state name='6 kilometers across'
+        input='WolframMap:AirportData__6 kilometers across' />
+    <state name='10 kilometers across'
+        input='WolframMap:AirportData__10 kilometers across' />
+    <state name='20 kilometers across'
+        input='WolframMap:AirportData__20 kilometers across' />
+    <state name='50 kilometers across'
+        input='WolframMap:AirportData__50 kilometers across' />
+    <state name='100 kilometers across'
+        input='WolframMap:AirportData__100 kilometers across' />
+    <state name='200 kilometers across'
+        input='WolframMap:AirportData__200 kilometers across' />
+    <state name='390 kilometers across'
+        input='WolframMap:AirportData__390 kilometers across' />
+    <state name='780 kilometers across'
+        input='WolframMap:AirportData__780 kilometers across' />
+    <state name='1600 kilometers across'
+        input='WolframMap:AirportData__1600 kilometers across' />
+    <state name='3100 kilometers across'
+        input='WolframMap:AirportData__3100 kilometers across' />
+    <state name='5900 kilometers across'
+        input='WolframMap:AirportData__5900 kilometers across' />
+    <state name='9400 kilometers across'
+        input='WolframMap:AirportData__9400 kilometers across' />
+    <state name='18000 kilometers across'
+        input='WolframMap:AirportData__18000 kilometers across' />
+   </statelist>
+   <state name='Non-metric'
+       input='WolframMap:AirportData__Non-metric' />
+  </states>
+  <infos count='1'>
+   <info>
+    <link url='http://maps.google.com?ie=UTF8&amp;z=12&amp;t=k&amp;ll=55.2256%2C9.26393&amp;q=55.2256%20N%2C%209.26393%20E'
+        text='Satellite image' />
+   </info>
+  </infos>
+ </pod>
+ <pod title='Airport identification'
+     scanner='Data'
+     id='Identification:AirportData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45971gh2i6ee250he1ah00005cd55da0bi8e00c0?MSPStoreType=image/gif&amp;s=45'
+       alt='official name | Skrydstrup AB
+IATA code | SKS
+ICAO code | EKSP'
+       title='official name | Skrydstrup AB
+IATA code | SKS
+ICAO code | EKSP'
+       width='229'
+       height='100' />
+   <plaintext>official name | Skrydstrup AB
+IATA code | SKS
+ICAO code | EKSP</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Runway data'
+     scanner='Data'
+     id='RunwayData:AirportData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www5a.wolframalpha.com/Calculate/MSP/MSP45981gh2i6ee250he1ah00002difb54i8i10ci82?MSPStoreType=image/gif&amp;s=45'
+       alt='elevation | 43 meters
+number of runways | 2
+longest runway length | 3006 meters'
+       title='elevation | 43 meters
+number of runways | 2
+longest runway length | 3006 meters'
+       width='275'
+       height='100' />
+   <plaintext>elevation | 43 meters
+number of runways | 2
+longest runway length | 3006 meters</plaintext>
+  </subpod>
+  <states count='2'>
+   <state name='Show non-metric'
+       input='RunwayData:AirportData__Show non-metric' />
+   <state name='More'
+       input='RunwayData:AirportData__More' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='SKS'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Airport'
+       desc='an airport'
+       input='*C.SKS-_*Airport-' />
+   <value name='Financial'
+       desc='a financial entity'
+       input='*C.SKS-_*Financial-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='http://www.wolframalpha.com/sources/AirportDataSourceInformationNotes.html'
+      text='Airport data' />
+  <source url='http://www.wolframalpha.com/sources/OpenStreetMapSourceInformationNotes.html'
+      text='Open street map' />
+ </sources>
+</queryresult>

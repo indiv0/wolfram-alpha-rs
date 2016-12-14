@@ -1,0 +1,92 @@
+<queryresult success='true'
+    error='false'
+    numpods='3'
+    datatypes='Financial'
+    timedout=''
+    timedoutpods='Recent returns,Performance comparisons,Correlation matrix,Daily return analysis,Projections,Daily returns versus S&amp;P 500,Company logo,Wikipedia summary'
+    timing='9.749'
+    parsetiming='0.11'
+    parsetimedout='false'
+    recalculate=''
+    id='MSPa24581bi30001h8gha26f000047d65gf020ah558h'
+    host='http://www4f.wolframalpha.com'
+    server='50'
+    related='http://www4f.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa24591bi30001h8gha26f00001f38f38244038379&amp;redisFailed=true&amp;s=50'
+    version='2.6'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www4f.wolframalpha.com/Calculate/MSP/MSP24601bi30001h8gha26f00004de2401ii488afb7?MSPStoreType=image/gif&amp;s=50'
+       alt='Shanks Group  (SKS)'
+       title='Shanks Group  (SKS)'
+       width='133'
+       height='18' />
+   <plaintext>Shanks Group  (SKS)</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Last close'
+     scanner='FinancialData'
+     id='Quote'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <img src='http://www4f.wolframalpha.com/Calculate/MSP/MSP24611bi30001h8gha26f00003g53g925237b902d?MSPStoreType=image/gif&amp;s=50'
+       alt='£0.87 (C$1.45) (SKS | London Stock Exchange | 14-12-2016)'
+       title='£0.87 (C$1.45) (SKS | London Stock Exchange | 14-12-2016)'
+       width='354'
+       height='18' />
+   <plaintext>£0.87 (C$1.45) (SKS | London Stock Exchange | 14-12-2016)</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More'
+       input='Quote__More' />
+  </states>
+ </pod>
+ <pod title='Price history'
+     scanner='FinancialData'
+     id='PriceHistory'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www4f.wolframalpha.com/Calculate/MSP/MSP24621bi30001h8gha26f000054b12cda3e1i1d8a?MSPStoreType=image/gif&amp;s=50'
+       alt='
+minimum | average | maximum
+£0.71 | £0.91 | £1.14
+(Thursday, Feb 11, 2016) |   | (Tuesday, Oct 18, 2016)'
+       title='
+minimum | average | maximum
+£0.71 | £0.91 | £1.14
+(Thursday, Feb 11, 2016) |   | (Tuesday, Oct 18, 2016)'
+       width='546'
+       height='254' />
+   <plaintext>
+minimum | average | maximum
+£0.71 | £0.91 | £1.14
+(Thursday, Feb 11, 2016) |   | (Tuesday, Oct 18, 2016)</plaintext>
+  </subpod>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='SubCategory'
+      word='sks'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='2'>
+   <value name='L:SKS'
+       desc='L:SKS'
+       input='*DPClash.FinancialE.sks-_*L%3ASKS-' />
+   <value name='AX:SKS'
+       desc='AX:SKS'
+       input='*DPClash.FinancialE.sks-_*AX%3ASKS-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='http://www.wolframalpha.com/sources/FinancialDataSourceInformationNotes.html'
+      text='Financial data' />
+ </sources>
+</queryresult>
