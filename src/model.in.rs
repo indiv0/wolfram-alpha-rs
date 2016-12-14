@@ -222,7 +222,7 @@ pub struct Pod {
     pub scanner: String,
     pub id: String,
     pub numsubpods: u32,
-    //pub primary: Option<bool>, // TODO: unimplemented by `serde_xml`.
+    pub primary: Option<bool>,
 
     pub subpod: Vec<Subpod>,
     pub states: Option<States>,
