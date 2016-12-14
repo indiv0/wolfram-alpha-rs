@@ -241,6 +241,17 @@ pub struct States {
     pub count: u32,
 
     pub state: Vec<State>,
+    pub statelist: Option<Vec<Statelist>>,
+}
+
+/// A series of `State` attributes, combined into a list.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Statelist {
+    // Attributes
+    pub count: u32,
+    pub value: String,
+
+    pub state: Vec<State>,
 }
 
 /// An alternative state which is available to a `Pod` or `Subpod`.

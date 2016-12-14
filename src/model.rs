@@ -27,7 +27,17 @@ include!(concat!(env!("OUT_DIR"), "/model.rs"));
 mod tests {
     use serde_xml::from_str;
 
-    use super::{Img, Infos, Plaintext, Pod, QueryResult, Subpod};
+    use super::{
+        Img,
+        Infos,
+        Plaintext,
+        Pod,
+        QueryResult,
+        State,
+        Statelist,
+        States,
+        Subpod,
+    };
 
     #[test]
     fn test_query_result_deserializer() {
@@ -71,6 +81,55 @@ mod tests {
         };
         assert_eq!(v, query_result);
         */
+    }
+
+    #[test]
+    fn test_state_deserializer() {
+        let s = r#"
+        <state name='More digits' input='Decimal Approximation__More digits'/>
+        "#.to_owned();
+        from_str::<State>(&s).unwrap();
+
+        let s = r#"
+        <states count='1'>
+            <state name='More digits' input='Decimal Approximation__More digits'/>
+        </states>
+        "#.to_owned();
+        from_str::<States>(&s).unwrap();
+
+        let s = r#"
+        <statelist count='9' value='Current week'>
+            <state name='Current week' input='WeatherCharts:WeatherData__Current week' />
+            <state name='Current day' input='WeatherCharts:WeatherData__Current day' />
+            <state name='Next week' input='WeatherCharts:WeatherData__Next week' />
+            <state name='Past week' input='WeatherCharts:WeatherData__Past week' />
+            <state name='Past month' input='WeatherCharts:WeatherData__Past month' />
+            <state name='Past year' input='WeatherCharts:WeatherData__Past year' />
+            <state name='Past 5 years' input='WeatherCharts:WeatherData__Past 5 years' />
+            <state name='Past 10 years' input='WeatherCharts:WeatherData__Past 10 years' />
+            <state name='All' input='WeatherCharts:WeatherData__All' />
+        </statelist>
+        "#.to_owned();
+        from_str::<Statelist>(&s).unwrap();
+
+        let s = r#"
+      <states count='3'>
+        <state name='Show metric' input='WeatherCharts:WeatherData__Show metric' />
+        <state name='More' input='WeatherCharts:WeatherData__More' />
+        <statelist count='9' value='Current week'>
+          <state name='Current week' input='WeatherCharts:WeatherData__Current week' />
+          <state name='Current day' input='WeatherCharts:WeatherData__Current day' />
+          <state name='Next week' input='WeatherCharts:WeatherData__Next week' />
+          <state name='Past week' input='WeatherCharts:WeatherData__Past week' />
+          <state name='Past month' input='WeatherCharts:WeatherData__Past month' />
+          <state name='Past year' input='WeatherCharts:WeatherData__Past year' />
+          <state name='Past 5 years' input='WeatherCharts:WeatherData__Past 5 years' />
+          <state name='Past 10 years' input='WeatherCharts:WeatherData__Past 10 years' />
+          <state name='All' input='WeatherCharts:WeatherData__All' />
+        </statelist>
+       </states>
+        "#.to_owned();
+        from_str::<States>(&s).unwrap();
     }
 
     #[test]
