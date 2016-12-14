@@ -32,15 +32,20 @@ mod tests {
     use serde_xml::from_str;
 
     use super::{
+        DidYouMean,
+        DidYouMeans,
         Img,
         Infos,
         Plaintext,
         Pod,
         QueryResult,
+        Spellcheck,
         State,
         Statelist,
         States,
         Subpod,
+        Tips,
+        Warnings,
     };
 
     fn read_sample_data_from_path<P>(path: P) -> String
@@ -59,6 +64,32 @@ mod tests {
         //from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_didyoumean_deserializer() {
+        from_str::<DidYouMean>(&read_sample_data_from_path("tests/sample-data/didyoumean.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_didyoumeans_deserializer() {
+        from_str::<DidYouMeans>(&read_sample_data_from_path("tests/sample-data/didyoumeans.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_warning_deserializer() {
+        from_str::<Spellcheck>(&read_sample_data_from_path("tests/sample-data/spellcheck.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_warnings_deserializer() {
+        from_str::<Warnings>(&read_sample_data_from_path("tests/sample-data/warnings.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_tips_deserializer() {
+        from_str::<Tips>(&read_sample_data_from_path("tests/sample-data/tips.xml")).unwrap();
     }
 
     #[test]

@@ -1,0 +1,4 @@
+<tips count='2'>
+ <tip text='Avoid concatenation in math expressions' />
+ <tip text='Use r*x rather than rx, and q*x^2 rather than qx2' />
+</tips>

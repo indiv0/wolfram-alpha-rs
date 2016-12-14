@@ -1,0 +1,8 @@
+<warnings count='2'>
+ <spellcheck word='airort'
+     suggestion='airport'
+     text='Interpreting &quot;airort&quot; as &quot;airport&quot;' />
+ <spellcheck word='JFK airort'
+     suggestion='airports'
+     text='Interpreting &quot;JFK airort&quot; as &quot;airports&quot;' />
+</warnings>
