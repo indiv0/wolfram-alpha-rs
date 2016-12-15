@@ -74,9 +74,7 @@ pub struct Tips {
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
 pub struct Tip {
     // Attributes
-    pub count: u32,
-
-    pub tip: Vec<Tip>,
+    pub text: String,
 }
 
 /// A series of `DidYouMean` elements.
@@ -89,7 +87,15 @@ pub struct DidYouMeans {
 }
 
 /// Provides a suggestion for a different query than the one provided.
-pub type DidYouMean = String;
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct DidYouMean {
+    // Attributes
+    pub score: String, // TODO: find a way to put a floating point here.
+    pub level: String,
+
+    #[serde(rename="$value")]
+    pub value: String,
+}
 
 /// Generated when a foreign language is detected in a query.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
@@ -142,35 +148,47 @@ pub struct Warnings {
     // Attributes
     pub count: u32,
 
-    pub warning: Vec<Warnings>,
+    // TODO: find a way to merge these into an enum?
+    pub spellcheck: Option<Vec<Spellcheck>>,
+    pub delimeters: Option<Vec<Delimeters>>,
+    pub translation: Option<Vec<Translation>>,
+    pub reinterpret: Option<Vec<Reinterpret>>,
 }
 
-/// An enum representing all possible warning types.
+/// Provides word and suggestion attributes as alternative spellings for a word
+/// in the query.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
-pub enum Warning {
-    Spellcheck {
-        // Attributes
-        word: String,
-        suggestion: String,
-        text: String,
-    },
-    Delimeters {
-        // Attributes
-        text: String,
-    },
-    Translation {
-        // Attributes
-        phrase: String,
-        trans: String,
-        lang: String,
-        text: String,
-    },
-    Reinterpret {
-        // Attributes
-        text: String,
+pub struct Spellcheck {
+    // Attributes
+    word: String,
+    suggestion: String,
+    text: String,
+}
 
-        alternative: Vec<Alternative>,
-    },
+/// Represents a warning regarding mismatched delimiters in a query.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Delimeters {
+    // Attributes
+    text: String,
+}
+
+/// Represents a word or a phrase which was translated in the query.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Translation {
+    // Attributes
+    phrase: String,
+    trans: String,
+    lang: String,
+    text: String,
+}
+
+/// Represents a warning that the query was reinterpred.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Reinterpret {
+    // Attributes
+    text: String,
+
+    alternative: Vec<Alternative>,
 }
 
 /// An alternative interpretation of an element in a query.
@@ -222,7 +240,7 @@ pub struct Pod {
     pub scanner: String,
     pub id: String,
     pub numsubpods: u32,
-    //pub primary: Option<bool>, // TODO: unimplemented by `serde_xml`.
+    pub primary: Option<bool>,
 
     pub subpod: Vec<Subpod>,
     pub states: Option<States>,
@@ -239,6 +257,17 @@ pub struct Pod {
 pub struct States {
     // Attributes
     pub count: u32,
+
+    pub state: Vec<State>,
+    pub statelist: Option<Vec<Statelist>>,
+}
+
+/// A series of `State` attributes, combined into a list.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Statelist {
+    // Attributes
+    pub count: u32,
+    pub value: String,
 
     pub state: Vec<State>,
 }

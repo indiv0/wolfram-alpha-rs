@@ -1,0 +1,6 @@
+<pod title="Input" scanner="Identity" id="Input" position="100" error="false" numsubpods="1">
+  <subpod title="">
+    <img src="http://www3.wolframalpha.com/Calculate/MSP/MSP25391i8g731fgf05hh6h00004fe2i2b23b0edcbg?MSPStoreType=image/gif&amp;s=18" alt="pi" title="pi" width="9" height="18"/>
+    <plaintext>pi</plaintext>
+  </subpod>
+</pod>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.822'
+    parsetiming='0.609'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    host='http://www4b.wolframalpha.com'
+    server='28'
+    related=''
+    version='2.6'>
+ <didyoumeans count='1'>
+  <didyoumean score='0.796774' level='high'>batman graphing calculator</didyoumean>
+ </didyoumeans>
+</queryresult>
