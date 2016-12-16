@@ -32,6 +32,7 @@ mod tests {
     use serde_xml::from_str;
 
     use super::{
+        Definitions,
         DidYouMean,
         DidYouMeans,
         Img,
@@ -65,6 +66,11 @@ mod tests {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_definitions_deserializer() {
+        from_str::<Definitions>(&read_sample_data_from_path("tests/sample-data/definitions.xml")).unwrap();
     }
 
     #[test]

@@ -1,0 +1,11 @@
+<definitions count='4'>
+ <definition word='health'
+     desc='measured by life expectancy, using the actual observed minimum and maximum values for the countries in the time series. The HDI shows where each country stands in relation to these goalposts, expressed as a value between 0 and 1.' />
+ <definition word='education'
+     desc='measured by the mean of years of schooling for adults aged 25 years and expected years of schooling for children of school attending age. Mean years of schooling estimates are based on duration of schooling at each level of education. Expected years of schooling estimates are based on enrollment by age at all levels of education and population of official school age for each level of education. The indicators are normalized using a minimum value of zero with maximum values set to the actual observed maximum values of the indicators for the countries in the time series. The HDI  shows where each country stands in relation to these goalposts, expressed as a value between 0 and 1.' />
+ <definition word='living standards'
+     desc='measured by GNI per capita (PPP US$). The HDI uses the logarithm of income, to reflect the diminishing importance of income with increasing GNI. The indicators are normalized using the actual observed minimum and maximum values for the countries in the time series. The HDI  shows where each country stands in relation to these goalposts, expressed as a value between 0 and 1.' />
+ <definition word='total'
+     desc='measures development by combining indicators of life expectancy, educational attainment and income. The HDI sets a minimum and a maximum for each dimension, called goalposts, and then shows where  
+ch country stands in relation to these goalposts, expressed as a value between 0 and 1.' />
+</definitions>

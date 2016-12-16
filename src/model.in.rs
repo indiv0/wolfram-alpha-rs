@@ -250,6 +250,7 @@ pub struct Pod {
     // also contains an `error` attribute.
     //pub error: Option<Error>,
     pub sounds: Option<Sounds>,
+    pub definitions: Option<Definitions>,
 }
 
 /// A series of `State` attributes.
@@ -316,6 +317,23 @@ pub struct Sound {
     pub url: Url,
     #[serde(rename = "type")]
     pub mimetype: String, // TODO: replace this with a Mimetype type.
+}
+
+/// A series of `Definition` attributes.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Definitions {
+    // Attributes
+    pub count: u32,
+
+    pub definition: Vec<Definition>,
+}
+
+/// An element containing a definition of a concept used in the query result.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Definition {
+    // Attributes
+    pub word: String,
+    pub desc: String,
 }
 
 /// A subelement of `Pod`.
