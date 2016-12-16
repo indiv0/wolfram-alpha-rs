@@ -1,6 +1,6 @@
 [package]
 name = "wolfram_alpha"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Nikita Pekin <contact@nikitapek.in>"]
 description = "A library providing Rust bindings for the Wolfram|Alpha API"
 repository = "https://github.com/indiv0/wolfram-alpha-rs"
