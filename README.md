@@ -52,7 +52,7 @@ Please read [CONTRIBUTING.md][contributing] before you start contributing.
 ## Credits
 
 The higher-level API design for this library is inspired by the
-[slack-rs/slack-rs-api(https://github.com/slack-rs/slack-rs-api) library.
+[slack-rs/slack-rs-api](https://github.com/slack-rs/slack-rs-api) library.
 
 The list of contributors to this project can be found at
 [CONTRIBUTORS.md][contributors].
