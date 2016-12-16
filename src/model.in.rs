@@ -102,7 +102,7 @@ pub struct DidYouMean {
 pub struct LanguageMsg {
     // Attributes
     pub english: String,
-    pub other: String,
+    pub other: Option<String>,
 }
 
 /// Provides information for queries regarding a topic under development.

@@ -37,6 +37,7 @@ mod tests {
         DidYouMeans,
         Img,
         Infos,
+        LanguageMsg,
         Plaintext,
         Pod,
         QueryResult,
@@ -66,6 +67,11 @@ mod tests {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_languagemsg_deserializer() {
+        from_str::<LanguageMsg>(&read_sample_data_from_path("tests/sample-data/languagemsg.xml")).unwrap();
     }
 
     #[test]
