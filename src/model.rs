@@ -17,6 +17,7 @@
 
 use serde::{Deserialize, Deserializer, Error as SerdeError};
 use serde::de::{MapVisitor, SeqVisitor, Visitor};
+use serde::de::impls::IgnoredAny;
 use url::Url;
 
 #[cfg(feature = "nightly")]
