@@ -75,6 +75,11 @@ mod tests {
     }
 
     #[test]
+    fn test_query_result_with_error_deserializer() {
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result-with-error.xml")).unwrap();
+    }
+
+    #[test]
     fn test_notes_deserializer() {
         from_str::<Notes>(&read_sample_data_from_path("tests/sample-data/notes.xml")).unwrap();
     }

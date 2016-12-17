@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false' error='true' numpods='0'
+     datatypes='' timedout='' timing='0.066' parsetiming='0'>
+ <error>
+  <code>2</code>
+  <msg>Appid missing</msg>
+ </error>
+</queryresult>
