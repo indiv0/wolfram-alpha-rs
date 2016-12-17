@@ -68,11 +68,10 @@ mod tests {
     fn test_query_result_deserializer() {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_1.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_2.xml")).unwrap();
-        //from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_7.xml")).unwrap();
     }
 
     #[test]

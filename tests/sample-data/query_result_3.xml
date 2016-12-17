@@ -1,8 +1,17 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<queryresult success='false' error='true' numpods='0'
-     datatypes='' timedout='' timing='0.066' parsetiming='0'>
-  <error>
-    <code>2</code>
-    <msg>Appid missing</msg>
-  </error>
+<queryresult success='false'
+    error='false'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='4.739'
+    parsetiming='0.14400000000000002'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    host='http://www5b.wolframalpha.com'
+    server='35'
+    related=''
+    version='2.6'>
+ <languagemsg english='Wolfram|Alpha does not yet support Slovak.' />
 </queryresult>
