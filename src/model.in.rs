@@ -7,20 +7,20 @@ pub struct QueryResult {
     pub success: bool,
     pub error_flag: bool,
     pub numpods: u32,
-    pub version: String, // TODO: replace this with a better type.
+    pub version: Option<String>, // TODO: replace this with a better type.
     pub datatypes: String, // TODO: possibly replace this with an enum?
     pub timing: f64,
     pub timedout: String,
-    pub timedoutpods: String,
+    pub timedoutpods: Option<String>,
     pub parsetiming: f64,
-    pub parsetimedout: bool,
-    pub recalculate: String,
-    pub id: String,
-    //pub host: String, // FIXME
-    pub server: u32,
-    pub related: String,
+    pub parsetimedout: Option<bool>,
+    pub recalculate: Option<String>,
+    pub id: Option<String>,
+    //pub host: Option<String>, // FIXME
+    pub server: Option<u32>,
+    pub related: Option<String>,
 
-    pub pod: Vec<Pod>,
+    pub pod: Option<Vec<Pod>>,
     pub assumptions: Option<Assumptions>,
     pub sources: Option<Sources>,
     // TODO: find a way to parse errors.
