@@ -116,9 +116,15 @@ mod tests {
     #[test]
     fn test_state_deserializer() {
         from_str::<State>(&read_sample_data_from_path("tests/sample-data/state/state.xml")).unwrap();
+    }
 
+    #[test]
+    fn test_statelist_deserializer() {
         from_str::<Statelist>(&read_sample_data_from_path("tests/sample-data/state/statelist.xml")).unwrap();
+    }
 
+    #[test]
+    fn test_states_deserializer() {
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-statelists.xml")).unwrap();
