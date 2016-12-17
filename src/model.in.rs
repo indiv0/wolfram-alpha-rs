@@ -251,6 +251,7 @@ pub struct Pod {
     //pub error: Option<Error>,
     pub sounds: Option<Sounds>,
     pub definitions: Option<Definitions>,
+    pub notes: Option<Notes>,
 }
 
 /// A series of `State` attributes.
@@ -335,6 +336,18 @@ pub struct Definition {
     pub word: String,
     pub desc: String,
 }
+
+/// A series of `Note` attributes.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+pub struct Notes {
+    // Attributes
+    pub count: u32,
+
+    pub note: Vec<Note>,
+}
+
+/// A note made by Wolfram|Alpha regarding a query.
+pub type Note = String;
 
 /// A subelement of `Pod`.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
