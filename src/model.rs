@@ -129,6 +129,43 @@ mod tests {
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-statelists.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-out-of-order.xml")).unwrap();
+        assert_eq!(
+            from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-out-of-order-complex.xml")).unwrap(),
+            States {
+                count: 5,
+                state: vec![
+                    State { name: 'a'.to_string(), input: 'a'.to_string(), },
+                    State { name: 'c'.to_string(), input: 'c'.to_string(), },
+                    State { name: 'f'.to_string(), input: 'f'.to_string(), },
+                ],
+                statelist: Some(vec![
+                    Statelist {
+                        count: 2,
+                        value: 'b'.to_string(),
+                        state: vec![
+                            State { name: "b1".to_owned(), input: "b1".to_owned(), },
+                            State { name: "b2".to_owned(), input: "b2".to_owned(), },
+                        ],
+                    },
+                    Statelist {
+                        count: 2,
+                        value: 'd'.to_string(),
+                        state: vec![
+                            State { name: "d1".to_owned(), input: "d1".to_owned(), },
+                            State { name: "d2".to_owned(), input: "d2".to_owned(), },
+                        ],
+                    },
+                    Statelist {
+                        count: 2,
+                        value: 'e'.to_string(),
+                        state: vec![
+                            State { name: "e1".to_owned(), input: "e1".to_owned(), },
+                            State { name: "e2".to_owned(), input: "e2".to_owned(), },
+                        ],
+                    },
+                ]),
+            }
+        );
     }
 
     #[test]
