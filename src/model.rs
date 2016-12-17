@@ -37,6 +37,7 @@ mod tests {
         Definitions,
         DidYouMean,
         DidYouMeans,
+        Error,
         Img,
         Infos,
         LanguageMsg,
@@ -192,5 +193,10 @@ mod tests {
     #[test]
     fn test_infos_deserializer() {
         from_str::<Infos>(&read_sample_data_from_path("tests/sample-data/infos.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_error_deserializer() {
+        from_str::<Error>(&read_sample_data_from_path("tests/sample-data/error.xml")).unwrap();
     }
 }
