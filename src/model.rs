@@ -38,6 +38,7 @@ mod tests {
         Img,
         Infos,
         LanguageMsg,
+        Notes,
         Plaintext,
         Pod,
         QueryResult,
@@ -67,6 +68,11 @@ mod tests {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_notes_deserializer() {
+        from_str::<Notes>(&read_sample_data_from_path("tests/sample-data/notes.xml")).unwrap();
     }
 
     #[test]
