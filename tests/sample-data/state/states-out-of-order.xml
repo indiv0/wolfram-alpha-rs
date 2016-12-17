@@ -1,0 +1,14 @@
+<states count='3'>
+ <state name='Show synonym network'
+     input='Synonyms:WordData__Show synonym network' />
+ <statelist count='2'
+     value='Meanings combined'
+     delimiters=''>
+  <state name='Meanings divided'
+      input='Synonyms:WordData__Meanings divided' />
+  <state name='Meanings combined'
+      input='Synonyms:WordData__Meanings combined' />
+ </statelist>
+ <state name='More'
+     input='Synonyms:WordData__More' />
+</states>

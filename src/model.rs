@@ -68,6 +68,7 @@ mod tests {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_7.xml")).unwrap();
     }
 
     #[test]
@@ -119,6 +120,7 @@ mod tests {
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-statelists.xml")).unwrap();
+        from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-out-of-order.xml")).unwrap();
     }
 
     #[test]
