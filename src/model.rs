@@ -15,6 +15,8 @@
 //! For more information, see [Wolfram|Alpha's API
 //! documentation](http://products.wolframalpha.com/api/documentation.html).
 
+use serde::{Deserialize, Deserializer, Error as SerdeError};
+use serde::de::{MapVisitor, SeqVisitor, Visitor};
 use url::Url;
 
 #[cfg(feature = "nightly")]

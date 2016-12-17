@@ -255,7 +255,7 @@ pub struct Pod {
 }
 
 /// A series of `State` attributes.
-#[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct States {
     // Attributes
     pub count: u32,
@@ -425,4 +425,221 @@ pub struct Link {
 pub struct Error {
     pub code: u32,
     pub msg: String,
+}
+
+impl Deserialize for States {
+    fn deserialize<D>(deserializer: &mut D) -> Result<Self, D::Error>
+        where D: Deserializer,
+    {
+        enum Field { Count, State, Statelist };
+
+        impl Deserialize for Field {
+            #[inline]
+            fn deserialize<D>(deserializer: &mut D) -> Result<Field, D::Error>
+                where D: Deserializer,
+            {
+                struct FieldVisitor;
+
+                impl Visitor for FieldVisitor {
+                    type Value = Field;
+
+                    fn visit_usize<E>(&mut self, value: usize) -> Result<Field, E>
+                        where E: SerdeError,
+                    {
+                        match value {
+                            0usize => { Ok(Field::Count) },
+                            1usize => { Ok(Field::State) },
+                            2usize => { Ok(Field::Statelist) },
+                            _ => Err(SerdeError::unknown_field(value.to_string().as_ref())),
+                        }
+                    }
+
+                    fn visit_str<E>(&mut self, value: &str) -> Result<Field, E>
+                        where E: SerdeError,
+                    {
+                        match value {
+                            "count" => { Ok(Field::Count) },
+                            "state" => { Ok(Field::State) },
+                            "statelist" => { Ok(Field::Statelist) },
+                            _ => Err(SerdeError::unknown_field(value)),
+                        }
+                    }
+
+                    fn visit_bytes<E>(&mut self, value: &[u8]) -> Result<Field, E>
+                        where E: SerdeError,
+                    {
+                        match value {
+                            b"count" => { Ok(Field::Count) },
+                            b"state" => { Ok(Field::State) },
+                            b"statelist" => { Ok(Field::Statelist) },
+                            _ => Err(SerdeError::unknown_field(String::from_utf8_lossy(value).as_ref())),
+                        }
+                    }
+                }
+
+                deserializer.deserialize_struct_field(FieldVisitor)
+            }
+        }
+
+        struct StatesVisitor;
+
+        // TODO: remove all try!s
+        impl Visitor for StatesVisitor {
+            type Value = States;
+
+            #[inline]
+            fn visit_seq<V>(&mut self, mut visitor: V) -> Result<States, V::Error>
+                where V: SeqVisitor,
+            {
+                let count = match match visitor.visit::<u32>() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                } {
+                    Some(value) => value,
+                    None => {
+                        match visitor.end() {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        };
+                        return Err(SerdeError::invalid_length(0usize));
+                    },
+                };
+                let state = match match visitor.visit::<Vec<State>>() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                } {
+                    Some(value) => value,
+                    None => {
+                        match visitor.end() {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        };
+                        return Err(SerdeError::invalid_length(1usize));
+                    },
+                };
+                let statelist = match match visitor.visit::<Option<Vec<Statelist>>>() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                } {
+                    Some(value) => value,
+                    None => {
+                        match visitor.end() {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        };
+                        return Err(SerdeError::invalid_length(2usize));
+                    },
+                };
+                match visitor.end() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                };
+                Ok(States{
+                    count: count,
+                    state: state,
+                    statelist: statelist,
+                })
+            }
+
+            #[inline]
+            fn visit_map<V>(&mut self, mut visitor: V) -> Result<States, V::Error>
+                where V: MapVisitor,
+            {
+                let mut count: Option<u32> = None;
+                let mut state: Option<Vec<State>> = None;
+                let mut statelist: Option<Option<Vec<Statelist>>> = None;
+                while let Some(key) = match visitor.visit_key::<Field>() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                } {
+                    match key {
+                        Field::Count => {
+                            if count.is_some() {
+                                return Err(<V::Error as
+                                               SerdeError>::duplicate_field("count"));
+                            }
+                            count = Some(match visitor.visit_value::<u32>() {
+                                Result::Ok(val) => val,
+                                Result::Err(err) => return Result::Err(From::from(err)),
+                            });
+                        },
+                        // The next two match arms alone have been modified from
+                        // the original, generated deserializer in order to
+                        // support out of order elements.
+                        Field::State => {
+                            let more_state = Some(match visitor.visit_value::<Vec<State>>() {
+                                Result::Ok(val) => val,
+                                Result::Err(err) => return Result::Err(From::from(err)),
+                            });
+                            if let Some(mut more_state) = more_state {
+                                if state.is_none() {
+                                    state = Some(more_state);
+                                } else {
+                                    if let Some(mut state) = state.as_mut() {
+                                        state.append(&mut more_state);
+                                    }
+                                }
+                            }
+                        },
+                        Field::Statelist => {
+                            let more_statelist = Some(match visitor.visit_value::<Option<Vec<Statelist>>>() {
+                                Result::Ok(val) => val,
+                                Result::Err(err) => return Result::Err(From::from(err)),
+                            });
+                            if let Some(more_statelist) = more_statelist {
+                                if let Some(mut more_statelist) = more_statelist {
+                                    if statelist.is_none() {
+                                        statelist = Some(Some(more_statelist));
+                                    } else {
+                                        if let Some(mut statelist) = statelist.as_mut() {
+                                            if let Some(statelist) = statelist.as_mut() {
+                                                statelist.append(&mut more_statelist);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                    }
+                }
+                match visitor.end() {
+                    Result::Ok(val) => val,
+                    Result::Err(err) => return Result::Err(From::from(err)),
+                };
+                let count = match count {
+                    Some(count) => count,
+                    None => match visitor.missing_field("count") {
+                        Result::Ok(val) => val,
+                        Result::Err(err) => return Result::Err(From::from(err)),
+                    },
+                };
+                let state = match state {
+                    Some(state) => state,
+                    None => match visitor.missing_field("state") {
+                        Result::Ok(val) => val,
+                        Result::Err(err) => return Result::Err(From::from(err)),
+                    },
+                };
+                let statelist = match statelist {
+                    Some(statelist) => statelist,
+                    None => match visitor.missing_field("statelist") {
+                        Result::Ok(val) => val,
+                        Result::Err(err) => return Result::Err(From::from(err)),
+                    },
+                };
+                Ok(States{
+                    count: count,
+                    state: state,
+                    statelist: statelist,
+                })
+            }
+        }
+
+        const FIELDS: &'static [&'static str] = &[
+            "count",
+            "state",
+            "statelist",
+        ];
+        deserializer.deserialize_struct("States", FIELDS, StatesVisitor)
+    }
 }
