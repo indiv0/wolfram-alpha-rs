@@ -1,0 +1,17 @@
+<states count='5'>
+ <state name='a' input='a' />
+ <statelist count='2' value='b' delimiters=''>
+  <state name='b1' input='b1' />
+  <state name='b2' input='b2' />
+ </statelist>
+ <state name='c' input='c' />
+ <statelist count='2' value='d' delimiters=''>
+  <state name='d1' input='d1' />
+  <state name='d2' input='d2' />
+ </statelist>
+ <statelist count='2' value='e' delimiters=''>
+  <state name='e1' input='e1' />
+  <state name='e2' input='e2' />
+ </statelist>
+ <state name='f' input='f' />
+</states>
