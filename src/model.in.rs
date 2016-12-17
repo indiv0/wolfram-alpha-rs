@@ -5,7 +5,7 @@
 pub struct QueryResult {
     // Attributes
     pub success: bool,
-    pub error: bool,
+    pub error_flag: bool,
     pub numpods: u32,
     pub version: String, // TODO: replace this with a better type.
     pub datatypes: String, // TODO: possibly replace this with an enum?
