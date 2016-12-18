@@ -1,3 +1,28 @@
+<a name="v0.3.0"></a>
+## v0.3.0 (2016-12-18)
+
+
+#### Features
+
+*   add custom deserializer for `States` ([872366d2](https://github.com/indiv0/wolfram-alpha-rs/commit/872366d2e3468d3555c04b3a0b87971faccee8bf))
+*   add `Notes` struct and `Note` type ([8b9e53f8](https://github.com/indiv0/wolfram-alpha-rs/commit/8b9e53f8309fafc63efd564e2b363ac151468e46))
+
+#### Breaking Changes
+
+*   change `QueryResult` field types ([468be31e](https://github.com/indiv0/wolfram-alpha-rs/commit/468be31e34fd1c531190e2954670dfb314c12388), breaks [#](https://github.com/indiv0/wolfram-alpha-rs/issues/))
+*   rename `error` field to `error_flag` ([93f2f2fb](https://github.com/indiv0/wolfram-alpha-rs/commit/93f2f2fb59b53286fe292ab2167b4b45d3f905d3), breaks [#](https://github.com/indiv0/wolfram-alpha-rs/issues/))
+
+#### Bug Fixes
+
+*   change `QueryResult` field types ([468be31e](https://github.com/indiv0/wolfram-alpha-rs/commit/468be31e34fd1c531190e2954670dfb314c12388), breaks [#](https://github.com/indiv0/wolfram-alpha-rs/issues/))
+
+#### Improvements
+
+*   add `error` field to `QueryResult` ([d79ed2e0](https://github.com/indiv0/wolfram-alpha-rs/commit/d79ed2e06f1863073cf804ef4d243c1f8e5e8b22))
+*   rename `error` field to `error_flag` ([93f2f2fb](https://github.com/indiv0/wolfram-alpha-rs/commit/93f2f2fb59b53286fe292ab2167b4b45d3f905d3), breaks [#](https://github.com/indiv0/wolfram-alpha-rs/issues/))
+
+
+
 <a name="v0.2.1"></a>
 ## v0.2.1 (2016-12-16)
 
