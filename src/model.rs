@@ -17,6 +17,7 @@
 
 use serde::{Deserialize, Deserializer, Error as SerdeError};
 use serde::de::{MapVisitor, SeqVisitor, Visitor};
+use serde::de::impls::IgnoredAny;
 use url::Url;
 
 #[cfg(feature = "nightly")]
@@ -37,6 +38,7 @@ mod tests {
         Definitions,
         DidYouMean,
         DidYouMeans,
+        Error,
         Img,
         Infos,
         LanguageMsg,
@@ -66,11 +68,15 @@ mod tests {
     fn test_query_result_deserializer() {
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_1.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_2.xml")).unwrap();
-        //from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
         from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_7.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_query_result_with_error_deserializer() {
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result-with-error.xml")).unwrap();
     }
 
     #[test]
@@ -192,5 +198,10 @@ mod tests {
     #[test]
     fn test_infos_deserializer() {
         from_str::<Infos>(&read_sample_data_from_path("tests/sample-data/infos.xml")).unwrap();
+    }
+
+    #[test]
+    fn test_error_deserializer() {
+        from_str::<Error>(&read_sample_data_from_path("tests/sample-data/error.xml")).unwrap();
     }
 }
