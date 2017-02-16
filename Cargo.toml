@@ -27,7 +27,7 @@ build = "build.rs"
 
 [build-dependencies.serde_codegen]
 optional = true
-version = "0.8.19"
+version = "0.8.23"
 
 [dependencies]
 log = "0.3.6"
@@ -40,15 +40,15 @@ version = "0.0"
 
 [dependencies.hyper]
 optional = true
-version = "0.9.5"
+version = "0.10.4"
 
 [dependencies.serde_derive]
 optional = true
-version = "0.8.19"
+version = "0.8.23"
 
 [dependencies.url]
 features = ["serde"]
-version = "1.1.1"
+version = "1.4.0"
 
 [features]
 default = ["hyper", "with-syntex"]
