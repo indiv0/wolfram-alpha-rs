@@ -16,26 +16,11 @@ rust:
   - stable
 os:
   - linux
-  - osx
-cache:
-  directories:
-    - $HOME/.cargo
+cache: cargo
 before_script:
   # load travis-cargo
-  - |
-      pip install 'travis-cargo<0.2' --user &&
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        export PATH=$HOME/.local/bin/:$PATH
-      else
-        export PATH=$HOME/Library/Python/2.7/bin:$PATH
-      fi
-  - |
-      if [[ "$TRAVIS_OS_NAME" == "osx"  ]]; then
-        brew install openssl && \
-        export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include && \
-        export OPENSSL_LIB_DIR=`brew --prefix openssl`/lib && \
-        echo "Installed OpenSSL for OS X."
-      fi
+  - pip install 'travis-cargo<0.2' --user
+  - export PATH=$HOME/.local/bin/:$PATH
 # the main build
 script:
   - |
@@ -43,27 +28,24 @@ script:
         travis-cargo build -- --no-default-features
       else
         travis-cargo build
-      fi &&
+      fi
+  - |
       if [[ "$TRAVIS_RUST_VERSION" == nightly* ]]; then
         travis-cargo test -- --no-default-features
       else
         travis-cargo test
-      fi &&
+      fi
+  - |
       if [[ "$TRAVIS_RUST_VERSION" == nightly* ]]; then
         travis-cargo bench -- --no-default-features
       else
         travis-cargo bench
-      fi &&
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        travis-cargo --only stable doc
       fi
+  - travis-cargo --only stable doc
 after_success:
   # upload the documentation from the build with stable (automatically only
   # actually runs from the master branch, not individual PRs), not on OS X.
-  - |
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        travis-cargo --only stable doc-upload
-      fi
+  - travis-cargo --only stable doc-upload
   # measure code coverage and upload to coveralls.io (the verify argument
   # mitigates kcov crashes due to malformed debuginfo, at the cost of some
   # speed. <https://github.com/huonw/travis-cargo/issues/12>)
