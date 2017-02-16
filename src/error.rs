@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Nikita Pekin and the wolfram_alpha_rs contributors
+// Copyright (c) 2016-2017 Nikita Pekin and the wolfram_alpha_rs contributors
 // See the README.md file at the top-level directory of this distribution.
 //
 // Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
@@ -7,12 +7,11 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+use serde_xml;
 use std::error::Error as StdError;
 use std::fmt;
 use std::io;
 use std::result::Result as StdResult;
-
-use serde_xml;
 
 /// A convenient alias type for results for `wolfram_alpha`.
 pub type Result<T> = StdResult<T, Error>;
@@ -81,8 +80,8 @@ impl PartialEq<Error> for Error {
 
         match (self, other) {
             (&HttpRequest(_), &HttpRequest(_)) |
-                (&Io(_), &Io(_)) |
-                (&Xml(_), &Xml(_)) => true,
+            (&Io(_), &Io(_)) |
+            (&Xml(_), &Xml(_)) => true,
             _ => false,
         }
     }
