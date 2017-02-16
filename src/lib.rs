@@ -54,7 +54,7 @@ use serde::Deserialize;
 fn parse_wolfram_alpha_response<T>(response: &str) -> Result<T>
     where T: Debug + Deserialize,
 {
-    let parsed_response = try!(serde_xml::from_str(response));
+    let parsed_response = serde_xml::from_str(response)?;
     trace!("Parsed response: {:?}", parsed_response);
     Ok(parsed_response)
 }
@@ -107,9 +107,9 @@ mod hyper_support {
             url.query_pairs_mut().extend_pairs(params.into_iter());
 
             trace!("Sending query \"{:?}\" to url: {}", params, url);
-            let mut response = try!(self.get(url).send());
+            let mut response = self.get(url).send()?;
             let mut result = String::new();
-            try!(response.read_to_string(&mut result));
+            response.read_to_string(&mut result)?;
             trace!("Query result: {}", result);
 
             Ok(result)

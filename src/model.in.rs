@@ -480,7 +480,6 @@ impl Deserialize for States {
 
         struct StatesVisitor;
 
-        // TODO: remove all try!s
         impl Visitor for StatesVisitor {
             type Value = States;
 

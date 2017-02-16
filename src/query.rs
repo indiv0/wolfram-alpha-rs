@@ -96,6 +96,6 @@ pub fn query<R>(
         }
     }
 
-    let response = try!(client.send_authed("query", appid, &mut params));
+    let response = client.send_authed("query", appid, &mut params)?;
     parse_wolfram_alpha_response(&response)
 }
