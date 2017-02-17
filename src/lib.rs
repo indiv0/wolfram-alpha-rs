@@ -66,22 +66,15 @@ pub trait WolframAlphaRequestSender {
     ///
     /// Takes a map of parameters which get appended to the request as query
     /// parameters. Returns the response body string.
-    fn send<'a>(
-        &self,
-        method: &str,
-        params: &mut HashMap<&str, &'a str>
-    ) -> HttpRequestResult<String>;
+    fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
+        -> HttpRequestResult<String>;
 
     /// Make an API call to Wolfram|Alpha that contains the configured App ID.
     ///
     /// Takes a map of parameters which get appended to the request as query
     /// parameters. Returns the response body string.
-    fn send_authed<'a>(
-        &self,
-        method: &str,
-        app_id: &'a str,
-        params: &mut HashMap<&str, &'a str>
-    ) -> HttpRequestResult<String> {
+    fn send_authed<'a>(&self, method: &str, app_id: &'a str, params: &mut HashMap<&str, &'a str>)
+        -> HttpRequestResult<String> {
         params.insert("appid", app_id);
         self.send(method, params)
     }
@@ -97,11 +90,8 @@ mod hyper_support {
     use url::Url;
 
     impl WolframAlphaRequestSender for hyper::Client {
-        fn send<'a>(
-            &self,
-            method: &str,
-            params: &mut HashMap<&str, &'a str>
-        ) -> HttpRequestResult<String> {
+        fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
+            -> HttpRequestResult<String> {
             let url_string = format!("https://api.wolframalpha.com/v2/{}", method);
             let mut url = url_string.parse::<Url>().expect("Unable to parse URL");
 
