@@ -428,7 +428,11 @@ impl Deserialize for States {
     fn deserialize<D>(deserializer: &mut D) -> Result<Self, D::Error>
         where D: Deserializer,
     {
-        enum Field { Count, State, Statelist };
+        enum Field {
+            Count,
+            State,
+            Statelist,
+        };
 
         impl Deserialize for Field {
             #[inline]
@@ -444,9 +448,9 @@ impl Deserialize for States {
                         where E: SerdeError,
                     {
                         match value {
-                            0usize => { Ok(Field::Count) },
-                            1usize => { Ok(Field::State) },
-                            2usize => { Ok(Field::Statelist) },
+                            0usize => Ok(Field::Count),
+                            1usize => Ok(Field::State),
+                            2usize => Ok(Field::Statelist),
                             _ => Err(SerdeError::unknown_field(value.to_string().as_ref())),
                         }
                     }
@@ -455,9 +459,9 @@ impl Deserialize for States {
                         where E: SerdeError,
                     {
                         match value {
-                            "count" => { Ok(Field::Count) },
-                            "state" => { Ok(Field::State) },
-                            "statelist" => { Ok(Field::Statelist) },
+                            "count" => Ok(Field::Count),
+                            "state" => Ok(Field::State),
+                            "statelist" => Ok(Field::Statelist),
                             _ => Err(SerdeError::unknown_field(value)),
                         }
                     }
@@ -466,10 +470,13 @@ impl Deserialize for States {
                         where E: SerdeError,
                     {
                         match value {
-                            b"count" => { Ok(Field::Count) },
-                            b"state" => { Ok(Field::State) },
-                            b"statelist" => { Ok(Field::Statelist) },
-                            _ => Err(SerdeError::unknown_field(String::from_utf8_lossy(value).as_ref())),
+                            b"count" => Ok(Field::Count),
+                            b"state" => Ok(Field::State),
+                            b"statelist" => Ok(Field::Statelist),
+                            _ => {
+                                Err(SerdeError::unknown_field(String::from_utf8_lossy(value)
+                                    .as_ref()))
+                            },
                         }
                     }
                 }
@@ -480,7 +487,6 @@ impl Deserialize for States {
 
         struct StatesVisitor;
 
-        // TODO: remove all try!s
         impl Visitor for StatesVisitor {
             type Value = States;
 
@@ -531,7 +537,7 @@ impl Deserialize for States {
                     Result::Ok(val) => val,
                     Result::Err(err) => return Result::Err(From::from(err)),
                 };
-                Ok(States{
+                Ok(States {
                     count: count,
                     state: state,
                     statelist: statelist,
@@ -579,10 +585,11 @@ impl Deserialize for States {
                             }
                         },
                         Field::Statelist => {
-                            let more_statelist = Some(match visitor.visit_value::<Option<Vec<Statelist>>>() {
-                                Result::Ok(val) => val,
-                                Result::Err(err) => return Result::Err(From::from(err)),
-                            });
+                            let more_statelist =
+                                Some(match visitor.visit_value::<Option<Vec<Statelist>>>() {
+                                    Result::Ok(val) => val,
+                                    Result::Err(err) => return Result::Err(From::from(err)),
+                                });
                             if let Some(more_statelist) = more_statelist {
                                 if let Some(mut more_statelist) = more_statelist {
                                     if statelist.is_none() {
@@ -605,26 +612,32 @@ impl Deserialize for States {
                 };
                 let count = match count {
                     Some(count) => count,
-                    None => match visitor.missing_field("count") {
-                        Result::Ok(val) => val,
-                        Result::Err(err) => return Result::Err(From::from(err)),
+                    None => {
+                        match visitor.missing_field("count") {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        }
                     },
                 };
                 let state = match state {
                     Some(state) => state,
-                    None => match visitor.missing_field("state") {
-                        Result::Ok(val) => val,
-                        Result::Err(err) => return Result::Err(From::from(err)),
+                    None => {
+                        match visitor.missing_field("state") {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        }
                     },
                 };
                 let statelist = match statelist {
                     Some(statelist) => statelist,
-                    None => match visitor.missing_field("statelist") {
-                        Result::Ok(val) => val,
-                        Result::Err(err) => return Result::Err(From::from(err)),
+                    None => {
+                        match visitor.missing_field("statelist") {
+                            Result::Ok(val) => val,
+                            Result::Err(err) => return Result::Err(From::from(err)),
+                        }
                     },
                 };
-                Ok(States{
+                Ok(States {
                     count: count,
                     state: state,
                     statelist: statelist,
@@ -632,11 +645,7 @@ impl Deserialize for States {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &[
-            "count",
-            "state",
-            "statelist",
-        ];
+        const FIELDS: &'static [&'static str] = &["count", "state", "statelist"];
         deserializer.deserialize_struct("States", FIELDS, StatesVisitor)
     }
 }
@@ -685,8 +694,7 @@ impl Deserialize for QueryResult {
 
         impl Deserialize for __Field {
             #[inline]
-            fn deserialize<__D>(deserializer: &mut __D)
-                                -> Result<__Field, __D::Error>
+            fn deserialize<__D>(deserializer: &mut __D) -> Result<__Field, __D::Error>
                 where __D: Deserializer,
             {
                 struct __FieldVisitor;
@@ -694,10 +702,8 @@ impl Deserialize for QueryResult {
                 impl Visitor for __FieldVisitor {
                     type Value = __Field;
 
-                    fn visit_usize<__E>(&mut self,
-                                        value: usize)
-                                        -> Result<__Field, __E>
-                        where __E: SerdeError
+                    fn visit_usize<__E>(&mut self, value: usize) -> Result<__Field, __E>
+                        where __E: SerdeError,
                     {
                         match value {
                             0usize => Ok(__Field::__field0),
@@ -800,10 +806,8 @@ impl Deserialize for QueryResult {
                         }
                     }
 
-                    fn visit_bytes<__E>(&mut self,
-                                        value: &[u8])
-                                        -> Result<__Field, __E>
-                        where __E: SerdeError
+                    fn visit_bytes<__E>(&mut self, value: &[u8]) -> Result<__Field, __E>
+                        where __E: SerdeError,
                     {
                         match value {
                             b"success" => Ok(__Field::__field0),
@@ -849,10 +853,8 @@ impl Deserialize for QueryResult {
             type Value = QueryResult;
 
             #[inline]
-            fn visit_seq<__V>(&mut self,
-                              mut visitor: __V)
-                              -> Result<QueryResult, __V::Error>
-                where __V: SeqVisitor
+            fn visit_seq<__V>(&mut self, mut visitor: __V) -> Result<QueryResult, __V::Error>
+                where __V: SeqVisitor,
             {
                 let __field0 = match match visitor.visit::<bool>() {
                     Result::Ok(val) => val,
@@ -865,7 +867,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(0usize));
-                    }
+                    },
                 };
                 let __field1 = match match visitor.visit::<bool>() {
                     Result::Ok(val) => val,
@@ -878,7 +880,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(1usize));
-                    }
+                    },
                 };
                 let __field2 = match match visitor.visit::<u32>() {
                     Result::Ok(val) => val,
@@ -891,7 +893,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(2usize));
-                    }
+                    },
                 };
                 let __field3 = match match visitor.visit::<Option<String>>() {
                     Result::Ok(val) => val,
@@ -904,7 +906,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(3usize));
-                    }
+                    },
                 };
                 let __field4 = match match visitor.visit::<String>() {
                     Result::Ok(val) => val,
@@ -917,7 +919,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(4usize));
-                    }
+                    },
                 };
                 let __field5 = match match visitor.visit::<f64>() {
                     Result::Ok(val) => val,
@@ -930,7 +932,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(5usize));
-                    }
+                    },
                 };
                 let __field6 = match match visitor.visit::<String>() {
                     Result::Ok(val) => val,
@@ -943,7 +945,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(6usize));
-                    }
+                    },
                 };
                 let __field7 = match match visitor.visit::<Option<String>>() {
                     Result::Ok(val) => val,
@@ -956,7 +958,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(7usize));
-                    }
+                    },
                 };
                 let __field8 = match match visitor.visit::<f64>() {
                     Result::Ok(val) => val,
@@ -969,7 +971,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(8usize));
-                    }
+                    },
                 };
                 let __field9 = match match visitor.visit::<Option<bool>>() {
                     Result::Ok(val) => val,
@@ -982,7 +984,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(9usize));
-                    }
+                    },
                 };
                 let __field10 = match match visitor.visit::<Option<String>>() {
                     Result::Ok(val) => val,
@@ -995,7 +997,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(10usize));
-                    }
+                    },
                 };
                 let __field11 = match match visitor.visit::<Option<String>>() {
                     Result::Ok(val) => val,
@@ -1008,7 +1010,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(11usize));
-                    }
+                    },
                 };
                 let __field12 = match match visitor.visit::<Option<u32>>() {
                     Result::Ok(val) => val,
@@ -1021,7 +1023,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(12usize));
-                    }
+                    },
                 };
                 let __field13 = match match visitor.visit::<Option<String>>() {
                     Result::Ok(val) => val,
@@ -1034,7 +1036,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(13usize));
-                    }
+                    },
                 };
                 let __field14 = match match visitor.visit::<Option<Vec<Pod>>>() {
                     Result::Ok(val) => val,
@@ -1047,7 +1049,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(14usize));
-                    }
+                    },
                 };
                 let __field15 = match match visitor.visit::<Option<Assumptions>>() {
                     Result::Ok(val) => val,
@@ -1060,7 +1062,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(15usize));
-                    }
+                    },
                 };
                 let __field16 = match match visitor.visit::<Option<Sources>>() {
                     Result::Ok(val) => val,
@@ -1073,7 +1075,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(16usize));
-                    }
+                    },
                 };
                 let __field17 = match match visitor.visit::<Option<Error>>() {
                     Result::Ok(val) => val,
@@ -1086,7 +1088,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(17usize));
-                    }
+                    },
                 };
                 let __field18 = match match visitor.visit::<Option<Tips>>() {
                     Result::Ok(val) => val,
@@ -1099,7 +1101,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(18usize));
-                    }
+                    },
                 };
                 let __field19 = match match visitor.visit::<Option<DidYouMeans>>() {
                     Result::Ok(val) => val,
@@ -1112,7 +1114,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(19usize));
-                    }
+                    },
                 };
                 let __field20 = match match visitor.visit::<Option<LanguageMsg>>() {
                     Result::Ok(val) => val,
@@ -1125,7 +1127,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(20usize));
-                    }
+                    },
                 };
                 let __field21 = match match visitor.visit::<Option<FutureTopic>>() {
                     Result::Ok(val) => val,
@@ -1138,7 +1140,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(21usize));
-                    }
+                    },
                 };
                 let __field22 = match match visitor.visit::<Option<RelatedExamples>>() {
                     Result::Ok(val) => val,
@@ -1151,7 +1153,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(22usize));
-                    }
+                    },
                 };
                 let __field23 = match match visitor.visit::<Option<ExamplePage>>() {
                     Result::Ok(val) => val,
@@ -1164,7 +1166,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(23usize));
-                    }
+                    },
                 };
                 let __field24 = match match visitor.visit::<Option<Generalization>>() {
                     Result::Ok(val) => val,
@@ -1177,7 +1179,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(24usize));
-                    }
+                    },
                 };
                 let __field25 = match match visitor.visit::<Option<Warnings>>() {
                     Result::Ok(val) => val,
@@ -1190,7 +1192,7 @@ impl Deserialize for QueryResult {
                             Result::Err(err) => return Result::Err(From::from(err)),
                         };
                         return Err(SerdeError::invalid_length(25usize));
-                    }
+                    },
                 };
                 match visitor.end() {
                     Result::Ok(val) => val,
@@ -1227,10 +1229,8 @@ impl Deserialize for QueryResult {
             }
 
             #[inline]
-            fn visit_map<__V>(&mut self,
-                              mut visitor: __V)
-                              -> Result<QueryResult, __V::Error>
-                where __V: MapVisitor
+            fn visit_map<__V>(&mut self, mut visitor: __V) -> Result<QueryResult, __V::Error>
+                where __V: MapVisitor,
             {
                 let mut __field0: Option<bool> = None;
                 let mut __field1: Option<bool> = None;
@@ -1272,7 +1272,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         // Modified to handle both the `error` attribute and
                         // element. If the attribute has already been
                         // deserialized, assume the next item is the `error`
@@ -1295,7 +1295,7 @@ impl Deserialize for QueryResult {
                                     Result::Err(err) => return Result::Err(From::from(err)),
                                 });
                             }
-                        }
+                        },
                         __Field::__field2 => {
                             if __field2.is_some() {
                                 return Err(<__V::Error as
@@ -1305,7 +1305,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field3 => {
                             if __field3.is_some() {
                                 return Err(<__V::Error as
@@ -1315,7 +1315,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field4 => {
                             if __field4.is_some() {
                                 return Err(<__V::Error as
@@ -1325,7 +1325,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field5 => {
                             if __field5.is_some() {
                                 return Err(<__V::Error as
@@ -1335,7 +1335,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field6 => {
                             if __field6.is_some() {
                                 return Err(<__V::Error as
@@ -1345,7 +1345,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field7 => {
                             if __field7.is_some() {
                                 return Err(<__V::Error as
@@ -1355,7 +1355,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field8 => {
                             if __field8.is_some() {
                                 return Err(<__V::Error as
@@ -1365,7 +1365,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field9 => {
                             if __field9.is_some() {
                                 return Err(<__V::Error as
@@ -1375,7 +1375,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field10 => {
                             if __field10.is_some() {
                                 return Err(<__V::Error as
@@ -1385,7 +1385,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field11 => {
                             if __field11.is_some() {
                                 return Err(<__V::Error as
@@ -1395,7 +1395,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field12 => {
                             if __field12.is_some() {
                                 return Err(<__V::Error as
@@ -1405,7 +1405,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field13 => {
                             if __field13.is_some() {
                                 return Err(<__V::Error as
@@ -1415,7 +1415,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field14 => {
                             if __field14.is_some() {
                                 return Err(<__V::Error as
@@ -1425,7 +1425,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field15 => {
                             if __field15.is_some() {
                                 return Err(<__V::Error as
@@ -1435,7 +1435,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field16 => {
                             if __field16.is_some() {
                                 return Err(<__V::Error as
@@ -1445,7 +1445,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field17 => {
                             if __field17.is_some() {
                                 return Err(<__V::Error as
@@ -1455,7 +1455,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field18 => {
                             if __field18.is_some() {
                                 return Err(<__V::Error as
@@ -1465,7 +1465,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field19 => {
                             if __field19.is_some() {
                                 return Err(<__V::Error as
@@ -1475,7 +1475,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field20 => {
                             if __field20.is_some() {
                                 return Err(<__V::Error as
@@ -1485,7 +1485,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field21 => {
                             if __field21.is_some() {
                                 return Err(<__V::Error as
@@ -1495,7 +1495,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field22 => {
                             if __field22.is_some() {
                                 return Err(<__V::Error as
@@ -1506,7 +1506,7 @@ impl Deserialize for QueryResult {
                                     Result::Ok(val) => val,
                                     Result::Err(err) => return Result::Err(From::from(err)),
                                 });
-                        }
+                        },
                         __Field::__field23 => {
                             if __field23.is_some() {
                                 return Err(<__V::Error as
@@ -1516,7 +1516,7 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         __Field::__field24 => {
                             if __field24.is_some() {
                                 return Err(<__V::Error as
@@ -1527,7 +1527,7 @@ impl Deserialize for QueryResult {
                                     Result::Ok(val) => val,
                                     Result::Err(err) => return Result::Err(From::from(err)),
                                 });
-                        }
+                        },
                         __Field::__field25 => {
                             if __field25.is_some() {
                                 return Err(<__V::Error as
@@ -1537,13 +1537,13 @@ impl Deserialize for QueryResult {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             });
-                        }
+                        },
                         _ => {
                             let _ = match visitor.visit_value::<IgnoredAny>() {
                                 Result::Ok(val) => val,
                                 Result::Err(err) => return Result::Err(From::from(err)),
                             };
-                        }
+                        },
                     }
                 }
                 match visitor.end() {
@@ -1557,7 +1557,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field1 = match __field1 {
                     Some(__field1) => __field1,
@@ -1567,7 +1567,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field2 = match __field2 {
                     Some(__field2) => __field2,
@@ -1576,7 +1576,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field3 = match __field3 {
                     Some(__field3) => __field3,
@@ -1585,7 +1585,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field4 = match __field4 {
                     Some(__field4) => __field4,
@@ -1594,7 +1594,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field5 = match __field5 {
                     Some(__field5) => __field5,
@@ -1603,7 +1603,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field6 = match __field6 {
                     Some(__field6) => __field6,
@@ -1612,7 +1612,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field7 = match __field7 {
                     Some(__field7) => __field7,
@@ -1621,7 +1621,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field8 = match __field8 {
                     Some(__field8) => __field8,
@@ -1630,7 +1630,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field9 = match __field9 {
                     Some(__field9) => __field9,
@@ -1639,7 +1639,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field10 = match __field10 {
                     Some(__field10) => __field10,
@@ -1648,7 +1648,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field11 = match __field11 {
                     Some(__field11) => __field11,
@@ -1657,7 +1657,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field12 = match __field12 {
                     Some(__field12) => __field12,
@@ -1666,7 +1666,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field13 = match __field13 {
                     Some(__field13) => __field13,
@@ -1675,7 +1675,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field14 = match __field14 {
                     Some(__field14) => __field14,
@@ -1684,7 +1684,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field15 = match __field15 {
                     Some(__field15) => __field15,
@@ -1693,7 +1693,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field16 = match __field16 {
                     Some(__field16) => __field16,
@@ -1702,7 +1702,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field17 = match __field17 {
                     Some(__field17) => __field17,
@@ -1711,7 +1711,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field18 = match __field18 {
                     Some(__field18) => __field18,
@@ -1720,7 +1720,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field19 = match __field19 {
                     Some(__field19) => __field19,
@@ -1729,7 +1729,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field20 = match __field20 {
                     Some(__field20) => __field20,
@@ -1738,7 +1738,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field21 = match __field21 {
                     Some(__field21) => __field21,
@@ -1747,7 +1747,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field22 = match __field22 {
                     Some(__field22) => __field22,
@@ -1756,7 +1756,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field23 = match __field23 {
                     Some(__field23) => __field23,
@@ -1765,7 +1765,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field24 = match __field24 {
                     Some(__field24) => __field24,
@@ -1774,7 +1774,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 let __field25 = match __field25 {
                     Some(__field25) => __field25,
@@ -1783,7 +1783,7 @@ impl Deserialize for QueryResult {
                             Result::Ok(val) => val,
                             Result::Err(err) => return Result::Err(From::from(err)),
                         }
-                    }
+                    },
                 };
                 Ok(QueryResult {
                     success: __field0,
@@ -1816,34 +1816,32 @@ impl Deserialize for QueryResult {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &[
-            "success",
-            "error_flag",
-            "numpods",
-            "version",
-            "datatypes",
-            "timing",
-            "timedout",
-            "timedoutpods",
-            "parsetiming",
-            "parsetimedout",
-            "recalculate",
-            "id",
-            "server",
-            "related",
-            "pod",
-            "assumptions",
-            "sources",
-            "error",
-            "tips",
-            "didyoumeans",
-            "languagemsg",
-            "futuretopic",
-            "relatedexamples",
-            "examplepage",
-            "generalization",
-            "warnings",
-        ];
+        const FIELDS: &'static [&'static str] = &["success",
+                                                  "error_flag",
+                                                  "numpods",
+                                                  "version",
+                                                  "datatypes",
+                                                  "timing",
+                                                  "timedout",
+                                                  "timedoutpods",
+                                                  "parsetiming",
+                                                  "parsetimedout",
+                                                  "recalculate",
+                                                  "id",
+                                                  "server",
+                                                  "related",
+                                                  "pod",
+                                                  "assumptions",
+                                                  "sources",
+                                                  "error",
+                                                  "tips",
+                                                  "didyoumeans",
+                                                  "languagemsg",
+                                                  "futuretopic",
+                                                  "relatedexamples",
+                                                  "examplepage",
+                                                  "generalization",
+                                                  "warnings"];
         deserializer.deserialize_struct("QueryResult", FIELDS, __Visitor)
     }
 }

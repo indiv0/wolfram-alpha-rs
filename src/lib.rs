@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Nikita Pekin and the wolfram_alpha_rs contributors
+// Copyright (c) 2016-2017 Nikita Pekin and the wolfram_alpha_rs contributors
 // See the README.md file at the top-level directory of this distribution.
 //
 // Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
@@ -46,15 +46,14 @@ pub mod model;
 pub mod query;
 // TODO: implement the `validate_query` function.
 
+use serde::Deserialize;
 use std::collections::HashMap;
 use std::fmt::Debug;
-
-use serde::Deserialize;
 
 fn parse_wolfram_alpha_response<T>(response: &str) -> Result<T>
     where T: Debug + Deserialize,
 {
-    let parsed_response = try!(serde_xml::from_str(response));
+    let parsed_response = serde_xml::from_str(response)?;
     trace!("Parsed response: {:?}", parsed_response);
     Ok(parsed_response)
 }
@@ -67,8 +66,11 @@ pub trait WolframAlphaRequestSender {
     ///
     /// Takes a map of parameters which get appended to the request as query
     /// parameters. Returns the response body string.
-    fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
-        -> HttpRequestResult<String>;
+    fn send<'a>(
+        &self,
+        method: &str,
+        params: &mut HashMap<&str, &'a str>
+    ) -> HttpRequestResult<String>;
 
     /// Make an API call to Wolfram|Alpha that contains the configured App ID.
     ///
@@ -78,7 +80,7 @@ pub trait WolframAlphaRequestSender {
         &self,
         method: &str,
         app_id: &'a str,
-        params: &mut HashMap<&str, &'a str>,
+        params: &mut HashMap<&str, &'a str>
     ) -> HttpRequestResult<String> {
         params.insert("appid", app_id);
         self.send(method, params)
@@ -87,29 +89,28 @@ pub trait WolframAlphaRequestSender {
 
 #[cfg(feature = "hyper")]
 mod hyper_support {
+    use error::{HttpRequestError, HttpRequestResult};
+    use hyper;
     use std::collections::HashMap;
     use std::io::Read;
-
-    use hyper;
+    use super::WolframAlphaRequestSender;
     use url::Url;
 
-    use error::{HttpRequestError, HttpRequestResult};
-
-    use super::WolframAlphaRequestSender;
-
     impl WolframAlphaRequestSender for hyper::Client {
-        fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
-            -> HttpRequestResult<String>
-        {
+        fn send<'a>(
+            &self,
+            method: &str,
+            params: &mut HashMap<&str, &'a str>
+        ) -> HttpRequestResult<String> {
             let url_string = format!("https://api.wolframalpha.com/v2/{}", method);
             let mut url = url_string.parse::<Url>().expect("Unable to parse URL");
 
             url.query_pairs_mut().extend_pairs(params.into_iter());
 
             trace!("Sending query \"{:?}\" to url: {}", params, url);
-            let mut response = try!(self.get(url).send());
+            let mut response = self.get(url).send()?;
             let mut result = String::new();
-            try!(response.read_to_string(&mut result));
+            response.read_to_string(&mut result)?;
             trace!("Query result: {}", result);
 
             Ok(result)

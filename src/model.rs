@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Nikita Pekin and the wolfram_alpha_rs contributors
+// Copyright (c) 2016-2017 Nikita Pekin and the wolfram_alpha_rs contributors
 // See the README.md file at the top-level directory of this distribution.
 //
 // Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
@@ -28,32 +28,13 @@ include!(concat!(env!("OUT_DIR"), "/model.rs"));
 
 #[cfg(test)]
 mod tests {
+    use serde_xml::from_str;
     use std::fs::File;
     use std::io::Read;
     use std::path::Path;
-
-    use serde_xml::from_str;
-
-    use super::{
-        Definitions,
-        DidYouMean,
-        DidYouMeans,
-        Error,
-        Img,
-        Infos,
-        LanguageMsg,
-        Notes,
-        Plaintext,
-        Pod,
-        QueryResult,
-        Spellcheck,
-        State,
-        Statelist,
-        States,
-        Subpod,
-        Tips,
-        Warnings,
-    };
+    use super::{Definitions, DidYouMean, DidYouMeans, Error, Img, Infos, LanguageMsg, Notes,
+                Plaintext, Pod, QueryResult, Spellcheck, State, Statelist, States, Subpod, Tips,
+                Warnings};
 
     fn read_sample_data_from_path<P>(path: P) -> String
         where P: AsRef<Path>,
@@ -66,12 +47,18 @@ mod tests {
 
     #[test]
     fn test_query_result_deserializer() {
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_1.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_2.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml")).unwrap();
-        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml")).unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_1.xml"))
+            .unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_2.xml"))
+            .unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_3.xml"))
+            .unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_4.xml"))
+            .unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_5.xml"))
+            .unwrap();
+        from_str::<QueryResult>(&read_sample_data_from_path("tests/sample-data/query_result_6.xml"))
+            .unwrap();
     }
 
     #[test]
@@ -86,32 +73,38 @@ mod tests {
 
     #[test]
     fn test_languagemsg_deserializer() {
-        from_str::<LanguageMsg>(&read_sample_data_from_path("tests/sample-data/languagemsg.xml")).unwrap();
+        from_str::<LanguageMsg>(&read_sample_data_from_path("tests/sample-data/languagemsg.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_definitions_deserializer() {
-        from_str::<Definitions>(&read_sample_data_from_path("tests/sample-data/definitions.xml")).unwrap();
+        from_str::<Definitions>(&read_sample_data_from_path("tests/sample-data/definitions.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_didyoumean_deserializer() {
-        from_str::<DidYouMean>(&read_sample_data_from_path("tests/sample-data/didyoumean.xml")).unwrap();
+        from_str::<DidYouMean>(&read_sample_data_from_path("tests/sample-data/didyoumean.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_didyoumeans_deserializer() {
-        from_str::<DidYouMeans>(&read_sample_data_from_path("tests/sample-data/didyoumeans.xml")).unwrap();
+        from_str::<DidYouMeans>(&read_sample_data_from_path("tests/sample-data/didyoumeans.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_warning_deserializer() {
-        from_str::<Spellcheck>(&read_sample_data_from_path("tests/sample-data/spellcheck.xml")).unwrap();
+        from_str::<Spellcheck>(&read_sample_data_from_path("tests/sample-data/spellcheck.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_warnings_deserializer() {
-        from_str::<Warnings>(&read_sample_data_from_path("tests/sample-data/warnings.xml")).unwrap();
+        from_str::<Warnings>(&read_sample_data_from_path("tests/sample-data/warnings.xml"))
+            .unwrap();
     }
 
     #[test]
@@ -121,17 +114,20 @@ mod tests {
 
     #[test]
     fn test_state_deserializer() {
-        from_str::<State>(&read_sample_data_from_path("tests/sample-data/state/state.xml")).unwrap();
+        from_str::<State>(&read_sample_data_from_path("tests/sample-data/state/state.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_statelist_deserializer() {
-        from_str::<Statelist>(&read_sample_data_from_path("tests/sample-data/state/statelist.xml")).unwrap();
+        from_str::<Statelist>(&read_sample_data_from_path("tests/sample-data/state/statelist.xml"))
+            .unwrap();
     }
 
     #[test]
     fn test_states_deserializer() {
-        from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states.xml")).unwrap();
+        from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states.xml"))
+            .unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-states.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-multiple-statelists.xml")).unwrap();
         from_str::<States>(&read_sample_data_from_path("tests/sample-data/state/states-out-of-order.xml")).unwrap();
