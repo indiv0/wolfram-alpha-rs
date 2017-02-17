@@ -50,9 +50,7 @@ pub struct OptionalQueryParameters<'a> {
 
 /// Performs a query to the Wolfram|Alpha API.
 pub fn query<R>(
-    client: &R,
-    appid: &str,
-    input: &str,
+    client: &R, appid: &str, input: &str,
     optional_query_parameters: Option<OptionalQueryParameters>
 ) -> Result<QueryResult>
     where R: WolframAlphaRequestSender,
