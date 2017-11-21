@@ -7,11 +7,13 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+use hyper::error::UriError;
 use serde_xml;
 use std::error::Error as StdError;
 use std::fmt;
 use std::io;
 use std::result::Result as StdResult;
+use std::str::Utf8Error;
 
 /// A convenient alias type for results for `wolfram_alpha`.
 pub type Result<T> = StdResult<T, Error>;
@@ -87,12 +89,13 @@ impl PartialEq<Error> for Error {
     }
 }
 
-/// A convenient alias type for results of HTTP requests.
-pub type HttpRequestResult<T> = StdResult<T, HttpRequestError>;
-
 /// Represents errors which occur when sending an HTTP request to Wolfram|Alpha.
 #[derive(Debug)]
 pub enum HttpRequestError {
+    /// Error parsing a URL string into a `hyper::Uri`.
+    UriError(UriError),
+    /// Error parsing a bytes into a UTF-8 string.
+    Utf8Error(Utf8Error),
     /// An error occuring during network IO operations.
     Io(io::Error),
     /// Any other error occuring during an HTTP request.
@@ -103,6 +106,8 @@ impl fmt::Display for HttpRequestError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
             HttpRequestError::Io(ref e) => e.fmt(f),
+            HttpRequestError::UriError(ref e) => e.fmt(f),
+            HttpRequestError::Utf8Error(ref e) => e.fmt(f),
             HttpRequestError::Other(ref e) => e.fmt(f),
         }
     }
@@ -112,6 +117,8 @@ impl StdError for HttpRequestError {
     fn description(&self) -> &str {
         match *self {
             HttpRequestError::Io(ref e) => e.description(),
+            HttpRequestError::UriError(ref e) => e.description(),
+            HttpRequestError::Utf8Error(ref e) => e.description(),
             HttpRequestError::Other(ref e) => e.description(),
         }
     }
@@ -119,8 +126,22 @@ impl StdError for HttpRequestError {
     fn cause(&self) -> Option<&StdError> {
         match *self {
             HttpRequestError::Io(ref e) => e.cause(),
+            HttpRequestError::UriError(ref e) => e.cause(),
+            HttpRequestError::Utf8Error(ref e) => e.cause(),
             HttpRequestError::Other(ref e) => e.cause(),
         }
+    }
+}
+
+impl From<UriError> for HttpRequestError {
+    fn from(error: UriError) -> HttpRequestError {
+        HttpRequestError::UriError(error)
+    }
+}
+
+impl From<Utf8Error> for HttpRequestError {
+    fn from(error: Utf8Error) -> HttpRequestError {
+        HttpRequestError::Utf8Error(error)
     }
 }
 

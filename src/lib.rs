@@ -7,7 +7,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![deny(missing_docs, non_camel_case_types, warnings)]
+#![deny(missing_docs, non_camel_case_types)]
 #![cfg_attr(feature = "clippy", feature(plugin))]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
 #![cfg_attr(feature = "nightly", feature(custom_derive, proc_macro))]
@@ -18,17 +18,11 @@
 //! implemented by various request senders. These implementations may then be
 //! used to execute requests to the API.
 //!
-//! If the `hyper` feature is enabled during compilation, then this library
-//! provides an implementation of the `WolframAlphaRequestSender` trait for
-//! the `hyper::Client` of the [`hyper`](https://github.com/hyperium/hyper)
-//! library.
-//!
 //! Response bodies are deserialized from XML into structs via the
 //! [`serde_xml`](https://github.com/serde-rs/xml) library.
 
-#[cfg(feature = "hyper")]
+extern crate futures;
 extern crate hyper;
-
 #[macro_use]
 extern crate log;
 extern crate serde;
@@ -36,16 +30,18 @@ extern crate serde;
 #[macro_use]
 extern crate serde_derive;
 extern crate serde_xml;
+extern crate tokio_core;
 extern crate url;
 
 mod error;
 
-pub use self::error::{Error, HttpRequestError, HttpRequestResult, Result};
+pub use self::error::{Error, HttpRequestError, Result};
 
 pub mod model;
 pub mod query;
 // TODO: implement the `validate_query` function.
 
+use futures::Future;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fmt::Debug;
@@ -66,44 +62,62 @@ pub trait WolframAlphaRequestSender {
     ///
     /// Takes a map of parameters which get appended to the request as query
     /// parameters. Returns the response body string.
-    fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
-        -> HttpRequestResult<String>;
+    fn send<'a>(&'a self, method: &str, params: HashMap<&'a str, &'a str>)
+        -> Box<'a + Future<Item = String, Error = HttpRequestError>>;
 
     /// Make an API call to Wolfram|Alpha that contains the configured App ID.
     ///
     /// Takes a map of parameters which get appended to the request as query
     /// parameters. Returns the response body string.
-    fn send_authed<'a>(&self, method: &str, app_id: &'a str, params: &mut HashMap<&str, &'a str>)
-        -> HttpRequestResult<String> {
+    fn send_authed<'a>(&'a self, method: &str, app_id: &'a str, mut params: HashMap<&'a str, &'a str>)
+        -> Box<'a + Future<Item = String, Error = HttpRequestError>>
+    {
         params.insert("appid", app_id);
         self.send(method, params)
     }
 }
 
-#[cfg(feature = "hyper")]
 mod hyper_support {
-    use error::{HttpRequestError, HttpRequestResult};
-    use hyper;
+    use error::HttpRequestError;
+    use futures::{self, Future, Stream};
+    use hyper::{self, Uri};
+    use hyper::client::Connect;
     use std::collections::HashMap;
-    use std::io::Read;
+    use std::str::{self, FromStr};
     use super::WolframAlphaRequestSender;
     use url::Url;
 
-    impl WolframAlphaRequestSender for hyper::Client {
-        fn send<'a>(&self, method: &str, params: &mut HashMap<&str, &'a str>)
-            -> HttpRequestResult<String> {
+    impl<C> WolframAlphaRequestSender for hyper::Client<C>
+        where C: Connect,
+    {
+        fn send<'a>(&'a self, method: &str, mut params: HashMap<&'a str, &'a str>)
+            -> Box<'a + Future<Item = String, Error = HttpRequestError>>
+        {
             let url_string = format!("https://api.wolframalpha.com/v2/{}", method);
             let mut url = url_string.parse::<Url>().expect("Unable to parse URL");
 
-            url.query_pairs_mut().extend_pairs(params.into_iter());
+            url.query_pairs_mut().extend_pairs((&mut params).into_iter());
 
-            trace!("Sending query \"{:?}\" to url: {}", params, url);
-            let mut response = self.get(url).send()?;
-            let mut result = String::new();
-            response.read_to_string(&mut result)?;
-            trace!("Query result: {}", result);
+            let uri = Uri::from_str(url.as_ref()).map_err(From::from);
+            let res = futures::done(uri)
+                .and_then(move |uri| {
+                    trace!("Sending query \"{:?}\" to URL: {}", params, url.as_ref());
+                    self.get(uri)
+                })
+                .and_then(|res| {
+                    trace!("Response: {}", res.status());
 
-            Ok(result)
+                    res.body().concat2()
+                })
+                .map_err(From::from)
+                .map(|body| {
+                    str::from_utf8(&body)
+                        .map_err(From::from)
+                        .map(|string| string.to_string())
+                })
+                .and_then(|string| string);
+
+            Box::new(res)
         }
     }
 
@@ -117,5 +131,4 @@ mod hyper_support {
     }
 }
 
-#[cfg(feature = "hyper")]
 pub use hyper_support::*;
