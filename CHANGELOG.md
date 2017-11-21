@@ -1,3 +1,15 @@
+<a name="v0.4.0"></a>
+## v0.4.0 (2017-11-21)
+
+
+#### Improvements
+
+*   switch to async API ([b6d2e9a2](https://github.com/indiv0/wolfram-alpha-rs/commit/b6d2e9a26dd2261a9bf3b2c530e0d3f85bd7ff56))
+*   remove unnecessary mut ([29858ced](https://github.com/indiv0/wolfram-alpha-rs/commit/29858ced9730c372eaea04cddc0eb135f402e2ce))
+*   replace `try!` with `?` ([d7059a30](https://github.com/indiv0/wolfram-alpha-rs/commit/d7059a300b13609a88b4bbfa626af65b67559265))
+
+
+
 <a name="v0.3.0"></a>
 ## v0.3.0 (2016-12-18)
 

@@ -30,7 +30,7 @@ Add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-wolfram_alpha = "0.3"
+wolfram_alpha = "0.4"
 ```
 
 And in your `lib.rs` or `main.rs`:
@@ -39,7 +39,8 @@ And in your `lib.rs` or `main.rs`:
 extern crate wolfram_alpha;
 ```
 
-See the [API docs][api-docs] for information on using the crate in your library.
+See the [API docs][api-docs] for information on using the crate in your library,
+or take a look at an example in the [examples][examples] directory.
 
 ## Contributing
 
@@ -64,7 +65,8 @@ Apache License (Version 2.0).
 
 See [LICENSE-APACHE][license-apache], and [LICENSE-MIT][license-mit] for details.
 
-[api-docs]: https://indiv0.github.io/wolfram-alpha-rs/wolfram_alpha
+[api-docs]: https://indiv0.github.io/wolfram-alpha-rs/wolfram_alpha "API Documentation"
+[examples]: https://github.com/indiv0/wolfram-alpha-rs/tree/master/examples "Examples"
 [contributing]: https://github.com/indiv0/wolfram-alpha-rs/blob/master/CONTRIBUTING.md "Contribution Guide"
 [contributors]: https://github.com/indiv0/wolfram-alpha-rs/blob/master/CONTRIBUTORS.md "List of Contributors"
 [license-apache]: https://github.com/indiv0/wolfram-alpha-rs/blob/master/LICENSE-APACHE "Apache-2.0 License"
