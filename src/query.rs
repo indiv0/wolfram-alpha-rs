@@ -12,7 +12,8 @@
 //! For more information, see [Wolfram|Alpha's API
 //! documentation](http://products.wolframalpha.com/api/documentation.html).
 
-use error::Result;
+use error::Error;
+use futures::Future;
 use model::QueryResult;
 use std::collections::HashMap;
 use super::{WolframAlphaRequestSender, parse_wolfram_alpha_response};
@@ -49,10 +50,10 @@ pub struct OptionalQueryParameters<'a> {
 }
 
 /// Performs a query to the Wolfram|Alpha API.
-pub fn query<R>(
-    client: &R, appid: &str, input: &str,
-    optional_query_parameters: Option<OptionalQueryParameters>
-) -> Result<QueryResult>
+pub fn query<'a, R>(
+    client: &'a R, appid: &'a str, input: &'a str,
+    optional_query_parameters: Option<OptionalQueryParameters<'a>>
+) -> Box<'a + Future<Item = QueryResult, Error = Error>>
     where R: WolframAlphaRequestSender,
 {
     let mut params = HashMap::new();
@@ -90,6 +91,11 @@ pub fn query<R>(
         }
     }
 
-    let response = client.send_authed("query", appid, &mut params)?;
-    parse_wolfram_alpha_response(&response)
+    let res = client.send_authed("query", appid, params)
+        .map_err(From::from)
+        .and_then(|res| {
+            parse_wolfram_alpha_response(&res)
+        });
+
+    Box::new(res)
 }

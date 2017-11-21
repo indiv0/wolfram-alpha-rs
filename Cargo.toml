@@ -30,17 +30,16 @@ optional = true
 version = "0.8.23"
 
 [dependencies]
+futures = "0.1.17"
+hyper = "0.11.7"
 log = "0.3.6"
 serde = "0.8.23"
 serde_xml = "0.8.1"
+tokio-core = "0.1.10"
 
 [dependencies.clippy]
 optional = true
 version = "0.0"
-
-[dependencies.hyper]
-optional = true
-version = "0.10.4"
 
 [dependencies.serde_derive]
 optional = true
@@ -48,10 +47,13 @@ version = "0.8.23"
 
 [dependencies.url]
 features = ["serde"]
-version = "1.4.0"
+version = "1.6.0"
+
+[dev-dependencies]
+hyper-tls = "0.1.2"
 
 [features]
-default = ["hyper", "with-syntex"]
+default = ["with-syntex"]
 nightly = ["serde_derive"]
 nightly-testing = ["clippy", "nightly"]
 with-syntex = ["serde_codegen"]
