@@ -54,7 +54,7 @@ env:
   global:
     - RUST_BACKTRACE=1
     # override the default '--features unstable' used for the nightly branch
-    - TRAVIS_CARGO_NIGHTLY_FEATURE="nightly-testing"
+    - TRAVIS_CARGO_NIGHTLY_FEATURE="nightly"
     # encrypted Github token for doc upload
     - secure: DHSbYBAuYcv4bZUF5Rnf85dvHQ1tlpphj/TBfwr4EL/FcZufjllo2G8MwBnofeh1aB5rH2ZtLLSJx/2MPh7ShKM36NhtYZvbpjWyuocazce5VyzdjaZtXQ25F8CNUzG48iItFHLgLWCGff047SJwplVIXytkG8bDwN6jp3BHWTmkXtvCJH3WS34ZuVZovagwuv9iEBr+QOOxyX5qGzWIhtjTVSd4aA0g04gfdSqbCYbhSWF12LiFEP/dNYEmVm7wIMm59kfrh1hGUPJ27tiIwXww3lmLXrY3y4vqEKYE+Zmu+VVAb0gDDnZ5REBHlAnPk1R8gQXgTULkkKNAm45q2aKU2/glRl3dKq1yG1XB3/OdbwlJXX5wKOS58/kqsSaO4Jw5/8dryvlM5pympqRpAlvtTEno+c3d25Km1GxozxJ4C2xNZniduccaO3BTLnIZPs9fTKlZb3Q1+cr+vfOpyf2Gvhvbc9q0k4l0uYfsET/o/tD8yAScymAAm49u4WDQjqldUAUk1dtPC+FssN3gwURSibWP8K5LAkCjBc1xlxdRXz18h8Qg8bgANm/yifCzPm8YGeDBZLD8He/36l4T+xdua/zIWSRlE8W2nhuaT5u+uuLCZj5eygmggGbnCwTXCeGPjZVcQ4C8RfDIKJ/oltIs9lzX1XUqcpN4IBbhg+c=
 branches:
