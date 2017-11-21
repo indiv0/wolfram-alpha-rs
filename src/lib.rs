@@ -7,7 +7,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![deny(missing_docs, non_camel_case_types, warnings)]
+#![deny(missing_docs, non_camel_case_types)]
 #![cfg_attr(feature = "clippy", feature(plugin))]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
 #![cfg_attr(feature = "nightly", feature(custom_derive, proc_macro))]
