@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `QueryResult` struct in crate `wolfram_alpha`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, QueryResult">
+
+    <title>wolfram_alpha::model::QueryResult - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct QueryResult</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>wolfram_alpha</a>::<wbr><a href='index.html'>model</a></p><script>window.sidebarCurrent = {name: 'QueryResult', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>wolfram_alpha</a>::<wbr><a href='index.html'>model</a>::<wbr><a class="struct" href=''>QueryResult</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#5-37' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct QueryResult {
+    pub success: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    pub error_flag: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    pub numpods: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    pub version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub datatypes: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>,
+    pub timing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    pub timedout: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>,
+    pub timedoutpods: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub parsetiming: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    pub parsetimedout: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;,
+    pub recalculate: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub server: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;,
+    pub related: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub pod: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Pod.html" title="struct wolfram_alpha::model::Pod">Pod</a>&gt;&gt;,
+    pub assumptions: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Assumptions.html" title="struct wolfram_alpha::model::Assumptions">Assumptions</a>&gt;,
+    pub sources: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Sources.html" title="struct wolfram_alpha::model::Sources">Sources</a>&gt;,
+    pub error: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Error.html" title="struct wolfram_alpha::model::Error">Error</a>&gt;,
+    pub tips: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Tips.html" title="struct wolfram_alpha::model::Tips">Tips</a>&gt;,
+    pub didyoumeans: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.DidYouMeans.html" title="struct wolfram_alpha::model::DidYouMeans">DidYouMeans</a>&gt;,
+    pub languagemsg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.LanguageMsg.html" title="struct wolfram_alpha::model::LanguageMsg">LanguageMsg</a>&gt;,
+    pub futuretopic: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.FutureTopic.html" title="struct wolfram_alpha::model::FutureTopic">FutureTopic</a>&gt;,
+    pub relatedexamples: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.RelatedExamples.html" title="struct wolfram_alpha::model::RelatedExamples">RelatedExamples</a>&gt;,
+    pub examplepage: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.ExamplePage.html" title="struct wolfram_alpha::model::ExamplePage">ExamplePage</a>&gt;,
+    pub generalization: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Generalization.html" title="struct wolfram_alpha::model::Generalization">Generalization</a>&gt;,
+    pub warnings: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Warnings.html" title="struct wolfram_alpha::model::Warnings">Warnings</a>&gt;,
+}</pre><div class='docblock'><p><code>QueryResult</code> is the outer wrapper for all results from the query function.</p>
+</div><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id='structfield.success' class="structfield">
+                           <span id='success.v' class='invisible'>
+                           <code>success: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code>
+                           </span></span><span id='structfield.error_flag' class="structfield">
+                           <span id='error_flag.v' class='invisible'>
+                           <code>error_flag: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code>
+                           </span></span><span id='structfield.numpods' class="structfield">
+                           <span id='numpods.v' class='invisible'>
+                           <code>numpods: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code>
+                           </span></span><span id='structfield.version' class="structfield">
+                           <span id='version.v' class='invisible'>
+                           <code>version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id='structfield.datatypes' class="structfield">
+                           <span id='datatypes.v' class='invisible'>
+                           <code>datatypes: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code>
+                           </span></span><span id='structfield.timing' class="structfield">
+                           <span id='timing.v' class='invisible'>
+                           <code>timing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code>
+                           </span></span><span id='structfield.timedout' class="structfield">
+                           <span id='timedout.v' class='invisible'>
+                           <code>timedout: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code>
+                           </span></span><span id='structfield.timedoutpods' class="structfield">
+                           <span id='timedoutpods.v' class='invisible'>
+                           <code>timedoutpods: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id='structfield.parsetiming' class="structfield">
+                           <span id='parsetiming.v' class='invisible'>
+                           <code>parsetiming: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code>
+                           </span></span><span id='structfield.parsetimedout' class="structfield">
+                           <span id='parsetimedout.v' class='invisible'>
+                           <code>parsetimedout: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;</code>
+                           </span></span><span id='structfield.recalculate' class="structfield">
+                           <span id='recalculate.v' class='invisible'>
+                           <code>recalculate: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id='structfield.id' class="structfield">
+                           <span id='id.v' class='invisible'>
+                           <code>id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id='structfield.server' class="structfield">
+                           <span id='server.v' class='invisible'>
+                           <code>server: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;</code>
+                           </span></span><span id='structfield.related' class="structfield">
+                           <span id='related.v' class='invisible'>
+                           <code>related: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id='structfield.pod' class="structfield">
+                           <span id='pod.v' class='invisible'>
+                           <code>pod: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Pod.html" title="struct wolfram_alpha::model::Pod">Pod</a>&gt;&gt;</code>
+                           </span></span><span id='structfield.assumptions' class="structfield">
+                           <span id='assumptions.v' class='invisible'>
+                           <code>assumptions: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Assumptions.html" title="struct wolfram_alpha::model::Assumptions">Assumptions</a>&gt;</code>
+                           </span></span><span id='structfield.sources' class="structfield">
+                           <span id='sources.v' class='invisible'>
+                           <code>sources: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Sources.html" title="struct wolfram_alpha::model::Sources">Sources</a>&gt;</code>
+                           </span></span><span id='structfield.error' class="structfield">
+                           <span id='error.v' class='invisible'>
+                           <code>error: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Error.html" title="struct wolfram_alpha::model::Error">Error</a>&gt;</code>
+                           </span></span><span id='structfield.tips' class="structfield">
+                           <span id='tips.v' class='invisible'>
+                           <code>tips: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Tips.html" title="struct wolfram_alpha::model::Tips">Tips</a>&gt;</code>
+                           </span></span><span id='structfield.didyoumeans' class="structfield">
+                           <span id='didyoumeans.v' class='invisible'>
+                           <code>didyoumeans: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.DidYouMeans.html" title="struct wolfram_alpha::model::DidYouMeans">DidYouMeans</a>&gt;</code>
+                           </span></span><span id='structfield.languagemsg' class="structfield">
+                           <span id='languagemsg.v' class='invisible'>
+                           <code>languagemsg: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.LanguageMsg.html" title="struct wolfram_alpha::model::LanguageMsg">LanguageMsg</a>&gt;</code>
+                           </span></span><span id='structfield.futuretopic' class="structfield">
+                           <span id='futuretopic.v' class='invisible'>
+                           <code>futuretopic: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.FutureTopic.html" title="struct wolfram_alpha::model::FutureTopic">FutureTopic</a>&gt;</code>
+                           </span></span><span id='structfield.relatedexamples' class="structfield">
+                           <span id='relatedexamples.v' class='invisible'>
+                           <code>relatedexamples: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.RelatedExamples.html" title="struct wolfram_alpha::model::RelatedExamples">RelatedExamples</a>&gt;</code>
+                           </span></span><span id='structfield.examplepage' class="structfield">
+                           <span id='examplepage.v' class='invisible'>
+                           <code>examplepage: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.ExamplePage.html" title="struct wolfram_alpha::model::ExamplePage">ExamplePage</a>&gt;</code>
+                           </span></span><span id='structfield.generalization' class="structfield">
+                           <span id='generalization.v' class='invisible'>
+                           <code>generalization: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Generalization.html" title="struct wolfram_alpha::model::Generalization">Generalization</a>&gt;</code>
+                           </span></span><span id='structfield.warnings' class="structfield">
+                           <span id='warnings.v' class='invisible'>
+                           <code>warnings: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.Warnings.html" title="struct wolfram_alpha::model::Warnings">Warnings</a>&gt;</code>
+                           </span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#4' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Deserialize' class='impl'><span class='in-band'><code>impl <a class="trait" href="../../serde/de/trait.Deserialize.html" title="trait serde::de::Deserialize">Deserialize</a> for <a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a></code><a href='#impl-Deserialize' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#7134-8445' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.deserialize' class="method"><span id='deserialize.v' class='invisible'><code>fn <a href='../../serde/de/trait.Deserialize.html#tymethod.deserialize' class='fnname'>deserialize</a>&lt;__D&gt;(deserializer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>__D) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../../wolfram_alpha/model/struct.QueryResult.html" title="struct wolfram_alpha::model::QueryResult">QueryResult</a>, __D::<a class="type" href="../../serde/de/trait.Deserializer.html#associatedtype.Error" title="type serde::de::Deserializer::Error">Error</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;__D: <a class="trait" href="../../serde/de/trait.Deserializer.html" title="trait serde::de::Deserializer">Deserializer</a>,&nbsp;</span></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/wolfram_alpha/home/travis/build/indiv0/wolfram-alpha-rs/target/debug/build/wolfram_alpha-3b37fde14c1db2c8/out/model.rs.html#7135-8444' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Deserialize this value given this <code>Deserializer</code>.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "wolfram_alpha";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

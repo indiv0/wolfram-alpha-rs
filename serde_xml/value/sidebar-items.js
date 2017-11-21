@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Content",""]],"fn":[["from_value","Shortcut function to decode a Xml `Element` into a `T`"]],"struct":[["Element",""]]});

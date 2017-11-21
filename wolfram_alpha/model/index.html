@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `model` mod in crate `wolfram_alpha`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, model">
+
+    <title>wolfram_alpha::model - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Module model</p><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'><a href='../index.html'>wolfram_alpha</a></p><script>window.sidebarCurrent = {name: 'model', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>wolfram_alpha</a>::<wbr><a class="mod" href=''>model</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/wolfram_alpha/model.rs.html#10-203' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Struct and enum definitions of values in the Wolfram|Alpha model.</p>
+
+<p>For more information, see <a href="http://products.wolframalpha.com/api/documentation.html">Wolfram|Alpha&#39;s API
+documentation</a>.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Assumption.html"
+                                  title='struct wolfram_alpha::model::Assumption'>Assumption</a></td>
+                           <td class='docblock-short'>
+                                <p>A single assumption, typically about the meaning of a word or phrase.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Assumptions.html"
+                                  title='struct wolfram_alpha::model::Assumptions'>Assumptions</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Assumption</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Definition.html"
+                                  title='struct wolfram_alpha::model::Definition'>Definition</a></td>
+                           <td class='docblock-short'>
+                                <p>An element containing a definition of a concept used in the query result.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Definitions.html"
+                                  title='struct wolfram_alpha::model::Definitions'>Definitions</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Definition</code> attributes.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Delimeters.html"
+                                  title='struct wolfram_alpha::model::Delimeters'>Delimeters</a></td>
+                           <td class='docblock-short'>
+                                <p>Represents a warning regarding mismatched delimiters in a query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.DidYouMean.html"
+                                  title='struct wolfram_alpha::model::DidYouMean'>DidYouMean</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides a suggestion for a different query than the one provided.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.DidYouMeans.html"
+                                  title='struct wolfram_alpha::model::DidYouMeans'>DidYouMeans</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>DidYouMean</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Error.html"
+                                  title='struct wolfram_alpha::model::Error'>Error</a></td>
+                           <td class='docblock-short'>
+                                <p><code>Error</code> elements provide a code and a description of an error which has
+occured while performing a query to the API.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ExamplePage.html"
+                                  title='struct wolfram_alpha::model::ExamplePage'>ExamplePage</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides a link to an HTML page of sample queries on the requested topic.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.FutureTopic.html"
+                                  title='struct wolfram_alpha::model::FutureTopic'>FutureTopic</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides information for queries regarding a topic under development.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Generalization.html"
+                                  title='struct wolfram_alpha::model::Generalization'>Generalization</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides a link to a generalization of the requested query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ImageMap.html"
+                                  title='struct wolfram_alpha::model::ImageMap'>ImageMap</a></td>
+                           <td class='docblock-short'>
+                                <p>An HTML image map.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Img.html"
+                                  title='struct wolfram_alpha::model::Img'>Img</a></td>
+                           <td class='docblock-short'>
+                                <p>An HTML img element suitable for direct inclusion in a web page.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Info.html"
+                                  title='struct wolfram_alpha::model::Info'>Info</a></td>
+                           <td class='docblock-short'>
+                                <p>A container for extra information regarding the contents of a pod.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Infos.html"
+                                  title='struct wolfram_alpha::model::Infos'>Infos</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Info</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.LanguageMsg.html"
+                                  title='struct wolfram_alpha::model::LanguageMsg'>LanguageMsg</a></td>
+                           <td class='docblock-short'>
+                                <p>Generated when a foreign language is detected in a query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Link.html"
+                                  title='struct wolfram_alpha::model::Link'>Link</a></td>
+                           <td class='docblock-short'>
+                                <p>A standard link of some text pointing to a URL.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Notes.html"
+                                  title='struct wolfram_alpha::model::Notes'>Notes</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Note</code> attributes.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Pod.html"
+                                  title='struct wolfram_alpha::model::Pod'>Pod</a></td>
+                           <td class='docblock-short'>
+                                <p><code>Pod</code> elements are subelements of <code>QueryResult</code>. Each contains the results
+for a single pod.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.QueryResult.html"
+                                  title='struct wolfram_alpha::model::QueryResult'>QueryResult</a></td>
+                           <td class='docblock-short'>
+                                <p><code>QueryResult</code> is the outer wrapper for all results from the query function.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Rect.html"
+                                  title='struct wolfram_alpha::model::Rect'>Rect</a></td>
+                           <td class='docblock-short'>
+                                <p>A rectangular section of an HTML image map.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Reinterpret.html"
+                                  title='struct wolfram_alpha::model::Reinterpret'>Reinterpret</a></td>
+                           <td class='docblock-short'>
+                                <p>Represents a warning that the query was reinterpred.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RelatedExample.html"
+                                  title='struct wolfram_alpha::model::RelatedExample'>RelatedExample</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides a link to an HTML page of related examples on the requested topic.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RelatedExamples.html"
+                                  title='struct wolfram_alpha::model::RelatedExamples'>RelatedExamples</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>RelatedExample</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Sound.html"
+                                  title='struct wolfram_alpha::model::Sound'>Sound</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides a link to a playable sound file.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Sounds.html"
+                                  title='struct wolfram_alpha::model::Sounds'>Sounds</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Sound</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Source.html"
+                                  title='struct wolfram_alpha::model::Source'>Source</a></td>
+                           <td class='docblock-short'>
+                                <p>A link to a web page of source information.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Sources.html"
+                                  title='struct wolfram_alpha::model::Sources'>Sources</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Source</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Spellcheck.html"
+                                  title='struct wolfram_alpha::model::Spellcheck'>Spellcheck</a></td>
+                           <td class='docblock-short'>
+                                <p>Provides word and suggestion attributes as alternative spellings for a word
+in the query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.State.html"
+                                  title='struct wolfram_alpha::model::State'>State</a></td>
+                           <td class='docblock-short'>
+                                <p>An alternative state which is available to a <code>Pod</code> or <code>Subpod</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Statelist.html"
+                                  title='struct wolfram_alpha::model::Statelist'>Statelist</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>State</code> attributes, combined into a list.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.States.html"
+                                  title='struct wolfram_alpha::model::States'>States</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>State</code> attributes.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Subpod.html"
+                                  title='struct wolfram_alpha::model::Subpod'>Subpod</a></td>
+                           <td class='docblock-short'>
+                                <p>A subelement of <code>Pod</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Tip.html"
+                                  title='struct wolfram_alpha::model::Tip'>Tip</a></td>
+                           <td class='docblock-short'>
+                                <p>A single tip, typically regarding suggestions for fixing the query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Tips.html"
+                                  title='struct wolfram_alpha::model::Tips'>Tips</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Tip</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Translation.html"
+                                  title='struct wolfram_alpha::model::Translation'>Translation</a></td>
+                           <td class='docblock-short'>
+                                <p>Represents a word or a phrase which was translated in the query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Unit.html"
+                                  title='struct wolfram_alpha::model::Unit'>Unit</a></td>
+                           <td class='docblock-short'>
+                                <p>A table of unit abbreviations used inside a <code>Pod</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Units.html"
+                                  title='struct wolfram_alpha::model::Units'>Units</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Unit</code> elements.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Value.html"
+                                  title='struct wolfram_alpha::model::Value'>Value</a></td>
+                           <td class='docblock-short'>
+                                <p>The value of an assumption.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Warnings.html"
+                                  title='struct wolfram_alpha::model::Warnings'>Warnings</a></td>
+                           <td class='docblock-short'>
+                                <p>A series of <code>Warning</code> elements.</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Alternative.html"
+                                  title='type wolfram_alpha::model::Alternative'>Alternative</a></td>
+                           <td class='docblock-short'>
+                                <p>An alternative interpretation of an element in a query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Note.html"
+                                  title='type wolfram_alpha::model::Note'>Note</a></td>
+                           <td class='docblock-short'>
+                                <p>A note made by Wolfram|Alpha regarding a query.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Plaintext.html"
+                                  title='type wolfram_alpha::model::Plaintext'>Plaintext</a></td>
+                           <td class='docblock-short'>
+                                <p>A textual representation of a single subpod.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "wolfram_alpha";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
