@@ -12,7 +12,6 @@ keywords = [
     "async",
     "API",
     "library",
-    "web",
 ]
 license = "MIT/Apache-2.0"
 include = [
