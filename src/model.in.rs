@@ -578,7 +578,7 @@ impl Deserialize for States {
                                 if state.is_none() {
                                     state = Some(more_state);
                                 } else {
-                                    if let Some(mut state) = state.as_mut() {
+                                    if let Some(state) = state.as_mut() {
                                         state.append(&mut more_state);
                                     }
                                 }
@@ -595,7 +595,7 @@ impl Deserialize for States {
                                     if statelist.is_none() {
                                         statelist = Some(Some(more_statelist));
                                     } else {
-                                        if let Some(mut statelist) = statelist.as_mut() {
+                                        if let Some(statelist) = statelist.as_mut() {
                                             if let Some(statelist) = statelist.as_mut() {
                                                 statelist.append(&mut more_statelist);
                                             }
